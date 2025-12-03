@@ -3888,6 +3888,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-blur@npm:~15.0.7":
+  version: 15.0.7
+  resolution: "expo-blur@npm:15.0.7"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/0285f0f39871fdcd94a397c07fd724b1ee1f4c055b5a733dc3b44cd6571a28016d863ae7e4205f00ce039ada730a8ad6d396b928ae4686cbc69cfcd232471431
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~18.0.10":
   version: 18.0.10
   resolution: "expo-constants@npm:18.0.10"
@@ -3931,6 +3942,17 @@ __metadata:
     expo: "*"
     react: "*"
   checksum: 10c0/6ca4cb430a97627b5657a220720808e4bd6dd89f4e9f86d52db71b9f91a72af8e63a83005d49af86924fc8f7bd210c312dfcb07212a1fe54334e0b4058943ec9
+  languageName: node
+  linkType: hard
+
+"expo-linear-gradient@npm:~15.0.7":
+  version: 15.0.7
+  resolution: "expo-linear-gradient@npm:15.0.7"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/ee9984f4bc8985b3ad32f8a59138fd7336e16e782c1d2d10110f70b2e05b9c563382d2c16cfbe21e6463fa896f573dcc3d70d0afd32f8d435bccd9afadf8b006
   languageName: node
   linkType: hard
 
@@ -4040,6 +4062,17 @@ __metadata:
   version: 1.0.4
   resolution: "expo-server@npm:1.0.4"
   checksum: 10c0/56330a10e222475126ce4a61676b170cf34951deae4a8b0965dcf8e317b03e99f71d92f908e57bb6196d2bdb0b36d5efb17fb48fd7c3b1d65f690bf2578f7975
+  languageName: node
+  linkType: hard
+
+"expo-splash-screen@npm:~31.0.11":
+  version: 31.0.11
+  resolution: "expo-splash-screen@npm:31.0.11"
+  dependencies:
+    "@expo/prebuild-config": "npm:^54.0.6"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/1d522dedf3b22f3184a68ced0d24f52f255632a8831f1ad3620805d285aba2a66eccf973e3021d88f12978feb4942b67f844f491074430872a34faaebb2ee4b5
   languageName: node
   linkType: hard
 
@@ -7666,9 +7699,13 @@ __metadata:
   dependencies:
     babel-preset-expo: "npm:^54.0.7"
     expo: "npm:~54.0.25"
+    expo-blur: "npm:~15.0.7"
     expo-constants: "npm:~18.0.10"
+    expo-font: "npm:~14.0.9"
+    expo-linear-gradient: "npm:~15.0.7"
     expo-linking: "npm:~8.0.9"
     expo-router: "npm:~6.0.15"
+    expo-splash-screen: "npm:~31.0.11"
     expo-status-bar: "npm:~3.0.8"
     moti: "npm:^0.30.0"
     react: "npm:19.1.0"
