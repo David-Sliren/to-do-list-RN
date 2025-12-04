@@ -1,30 +1,28 @@
 import { View, Text, TextInput, Pressable } from "react-native";
 import { MotiView } from "moti";
-import React from "react";
-import { Easing } from "react-native-reanimated";
 import tw from "twrnc";
+// import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from "@expo/vector-icons/Ionicons";
 const InputAdd = () => {
   return (
-    <MotiView
-      from={{ translateY: -20 }}
-      animate={{ translateY: 20 }}
-      transition={{
-        type: "timing",
-        duration: 800,
-        easing: Easing.bounce,
-      }}
-      style={tw`flex-row justify-between gap-2 bg-sky-700`}
+    <View
+      style={tw`flex-row justify-between  w-4/5 overflow-hidden rounded-xl h-12 border-2`}
     >
-      <TextInput placeholder="Agrega una tarea" style={tw`w-full`} />
+      <TextInput
+        placeholder="Agrega una tarea"
+        style={tw`p-2 w-10/12 h-full bg-zinc-600/20 border-r-2 text-black text-sm font-extrabold`}
+      />
       <Pressable
         onPress={() => console.log("hola")}
         style={({ pressed }) => [
-          tw`${pressed ? "bg-red-500" : "bg-blue-500"} `,
+          tw`${
+            pressed ? "opacity-80" : "opacity-100"
+          } justify-center items-center w-2/12 h-full bg-sky-400`,
         ]}
       >
-        <Text>Add</Text>
+        <Ionicons name="add" size={20} color="black" />
       </Pressable>
-    </MotiView>
+    </View>
   );
 };
 
