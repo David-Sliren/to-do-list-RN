@@ -6,11 +6,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 const InputAdd = () => {
   return (
     <View
-      style={tw`flex-row justify-between  w-10/12 overflow-hidden rounded-xl h-12 border-2`}
+      style={tw`flex-row justify-between  w-10/12 overflow-hidden rounded-xl h-12 border-2 shadow-lg`}
     >
       <TextInput
         placeholder="Agrega una tarea"
-        style={tw`p-2 w-10/12 h-full bg-sky-200/80 border-r-2 text-black text-sm font-extrabold`}
+        style={tw`p-2 w-10/12 h-full bg-sky-200/96 border-r-2 text-black text-sm font-extrabold`}
       />
       <Pressable
         onPress={() => console.log("hola")}

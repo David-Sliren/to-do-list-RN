@@ -5,6 +5,7 @@ import InputAdd from "../components/InputAdd";
 import Section from "../components/Section";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
+import Tasks from "../components/Tasks";
 const index = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -28,8 +29,14 @@ const index = () => {
             contentContainerStyle={tw`items-center p-2`}
             style={tw`w-[95%] flex-1 min-h-120`}
           >
-            <Section />
-            <Section />
+            <Section>
+              <Tasks />
+              <Tasks />
+              <Tasks />
+              <Tasks />
+              <Tasks />
+              <Tasks />
+            </Section>
           </ScrollView>
         </View>
       </LinearGradient>
