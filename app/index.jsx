@@ -19,8 +19,17 @@ const index = () => {
         <View
           style={tw` flex-1 absolute top-8 py-4 items-center overflow-hidden w-full h-full bg-white/45 rounded-t-10 border-2 border-white`}
         >
-          <View style={tw`mb-10 mt-10 items-center gap-8`}>
-            <Text style={tw`text-sky-500 text-5xl font-extrabold`}>
+          <View style={tw`mb-10 mt-10 items-center gap-8.9`}>
+            <Text
+              style={[
+                tw`text-sky-500 text-5xl font-extrabold`,
+                {
+                  textShadowColor: "rgba(0,0,0,0.6)",
+                  textShadowOffset: { width: 2, height: -2 },
+                  textShadowRadius: 4,
+                },
+              ]}
+            >
               Lista de tareas
             </Text>
             <InputAdd />
