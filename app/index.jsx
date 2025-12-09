@@ -3,12 +3,12 @@ import tw from "twrnc";
 import { MotiView } from "moti";
 import InputAdd from "../components/InputAdd";
 import Section from "../components/Section";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Tasks from "../components/Tasks";
 const index = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaProvider style={{ flex: 1 }}>
       <LinearGradient
         colors={["transparent", "#aa6eaa"]}
         locations={[0.8, 1]}
@@ -49,7 +49,7 @@ const index = () => {
           </ScrollView>
         </View>
       </LinearGradient>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
