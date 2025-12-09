@@ -1,15 +1,14 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { Stack } from "expo-router";
-import tw from "twrnc";
+import TasksContext from "../context/TasksContext";
+
 export default function _layout() {
   return (
-    <View style={tw`flex-1`}>
+    <TasksContext>
       <Stack
         screenOptions={{
           headerShown: false,
         }}
       />
-    </View>
+    </TasksContext>
   );
 }
