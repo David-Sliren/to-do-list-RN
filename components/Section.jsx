@@ -1,7 +1,12 @@
+// React
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
-import tw from "twrnc";
+
+// Expo
 import { LinearGradient } from "expo-linear-gradient";
+
+// Librerias
+import tw from "twrnc";
+
 const Section = ({ children, title = "Tareas Rapidas", NumTasks = 0 }) => {
   return (
     <View

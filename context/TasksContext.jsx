@@ -1,5 +1,6 @@
-import { View, Text } from "react-native";
+// React
 import React, { createContext, useContext, useState } from "react";
+import { View, Text } from "react-native";
 
 const Tasks = createContext();
 

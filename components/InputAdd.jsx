@@ -1,8 +1,13 @@
+// React
 import { View, Text, TextInput, Pressable } from "react-native";
-import { MotiView } from "moti";
-import tw from "twrnc";
-// import Ionicons from '@expo/vector-icons/Ionicons';
+
+// Expo
 import Ionicons from "@expo/vector-icons/Ionicons";
+
+// Librerias
+import tw from "twrnc";
+import { MotiView } from "moti";
+
 const InputAdd = () => {
   return (
     <View

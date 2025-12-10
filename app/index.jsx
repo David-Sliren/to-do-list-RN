@@ -1,12 +1,23 @@
+// React
 import { View, Text, ScrollView } from "react-native";
+
+// Expo
+import { LinearGradient } from "expo-linear-gradient";
+
+// Librerias
+
 import tw from "twrnc";
 import { MotiView } from "moti";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+// Context
+import { useTasks } from "../context/TasksContext";
+
+// Componentes
 import InputAdd from "../components/InputAdd";
 import Section from "../components/Section";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
 import Tasks from "../components/Tasks";
-import { useTasks } from "../context/TasksContext";
+
 const index = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>

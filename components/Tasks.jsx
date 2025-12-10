@@ -1,8 +1,10 @@
-import React from "react";
+// React
 import { View, Text } from "react-native";
 
+// Librerias
 import tw from "twrnc";
 
+// Componentes
 import CheckBox from "./CheckBox";
 import ButtonDelete from "./ButtonDelete";
 import ButtonEdit from "./ButtonEdit";

@@ -1,8 +1,10 @@
+// React
 import { View, Text, Pressable } from "react-native";
-import React from "react";
 
+// Expo
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+// Librerias
 import tw from "twrnc";
 
 const ButtonEdit = ({ action }) => {

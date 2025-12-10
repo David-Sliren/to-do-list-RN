@@ -1,8 +1,10 @@
-import React from "react";
+// React
 import { View, Text, Pressable } from "react-native";
 
+// Expo
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+// Librerias
 import tw from "twrnc";
 
 const CheckBox = ({ isSelect = !true, action }) => {
