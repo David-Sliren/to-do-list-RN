@@ -17,7 +17,12 @@ const TasksContext = ({ children }) => {
     setTextInput("");
   }
 
-  const valor = { tasks, addTask, setTextInput, textInput };
+  function deleteTask(value) {
+    const removeTask = tasks.filter((item) => item.id !== value);
+    setTasks(removeTask);
+  }
+
+  const valor = { tasks, addTask, deleteTask, setTextInput, textInput };
 
   return <Tasks.Provider value={valor}>{children}</Tasks.Provider>;
 };

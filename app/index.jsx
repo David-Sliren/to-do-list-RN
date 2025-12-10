@@ -19,7 +19,7 @@ import Section from "../components/Section";
 import Tasks from "../components/Tasks";
 
 const index = () => {
-  const { tasks } = useTasks();
+  const { tasks, deleteTask } = useTasks();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
@@ -54,7 +54,12 @@ const index = () => {
             <Section>
               {tasks.map((item) => {
                 return (
-                  <Tasks key={item.id} isDone={item.isDone} text={item.text} />
+                  <Tasks
+                    key={item.id}
+                    isDone={item.isDone}
+                    text={item.text}
+                    remove={() => deleteTask(item.id)}
+                  />
                 );
               })}
             </Section>

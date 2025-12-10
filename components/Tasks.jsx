@@ -9,7 +9,7 @@ import CheckBox from "./CheckBox";
 import ButtonDelete from "./ButtonDelete";
 import ButtonEdit from "./ButtonEdit";
 
-const Tasks = ({ isDone, text }) => {
+const Tasks = ({ isDone, text, remove, edit }) => {
   return (
     <View
       style={tw`bg-sky-200 flex-row justify-between items-center gap-2 px-3 w-full h-15 rounded-md shadow-md`}
@@ -21,8 +21,8 @@ const Tasks = ({ isDone, text }) => {
         </Text>
       </View>
       <View style={tw`flex-row gap-1`}>
-        <ButtonEdit />
-        <ButtonDelete />
+        <ButtonEdit action={edit} />
+        <ButtonDelete action={remove} />
       </View>
     </View>
   );
