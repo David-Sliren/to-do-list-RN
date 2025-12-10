@@ -19,6 +19,7 @@ import Section from "../components/Section";
 import Tasks from "../components/Tasks";
 
 const index = () => {
+  const { tasks } = useTasks();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
@@ -51,12 +52,11 @@ const index = () => {
             style={tw`w-[95%] flex-1 min-h-120`}
           >
             <Section>
-              <Tasks />
-              <Tasks />
-              <Tasks />
-              <Tasks />
-              <Tasks />
-              <Tasks />
+              {tasks.map((item) => {
+                return (
+                  <Tasks key={item.id} isDone={item.isDone} text={item.text} />
+                );
+              })}
             </Section>
           </ScrollView>
         </View>

@@ -5,9 +5,19 @@ import { View, Text } from "react-native";
 const Tasks = createContext();
 
 const TasksContext = ({ children }) => {
-  const [add, setAdd] = useState(12);
+  const [tasks, setTasks] = useState([]);
+  const [textInput, setTextInput] = useState("");
 
-  const valor = { add };
+  function addTask() {
+    if (textInput.trim() === "") return;
+    const newTask = { id: Date.now(), text: textInput, isDone: false };
+
+    setTasks((prevTask) => [...prevTask, newTask]);
+
+    setTextInput("");
+  }
+
+  const valor = { tasks, addTask, setTextInput, textInput };
 
   return <Tasks.Provider value={valor}>{children}</Tasks.Provider>;
 };
