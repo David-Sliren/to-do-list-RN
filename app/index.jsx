@@ -17,9 +17,11 @@ import { useTasks } from "../context/TasksContext";
 import InputAdd from "../components/InputAdd";
 import Section from "../components/Section";
 import Tasks from "../components/Tasks";
+import Warning from "../components/Warning";
+import NotAvailable from "../components/Modals_types/NotAvailable";
 
 const index = () => {
-  const { tasks, deleteTask } = useTasks();
+  const { tasks, deleteTask, editTask } = useTasks();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
@@ -32,6 +34,10 @@ const index = () => {
         <View
           style={tw` flex-1 absolute top-8 py-4 items-center overflow-hidden w-full h-full bg-white/45 rounded-t-10 border-2 border-white`}
         >
+          <Warning>
+            <NotAvailable />
+          </Warning>
+
           <View style={tw`mb-10 mt-10 items-center gap-8.9`}>
             <Text
               style={[
@@ -59,6 +65,7 @@ const index = () => {
                     isDone={item.isDone}
                     text={item.text}
                     remove={() => deleteTask(item.id)}
+                    edit={editTask}
                   />
                 );
               })}

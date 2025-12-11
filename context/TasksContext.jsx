@@ -5,9 +5,15 @@ import { View, Text } from "react-native";
 const Tasks = createContext();
 
 const TasksContext = ({ children }) => {
+  // Tareas
   const [tasks, setTasks] = useState([]);
+  // Texto
   const [textInput, setTextInput] = useState("");
 
+  // Caracteristicas Desativadas
+  const [isAvilable, setIsAvilable] = useState(false);
+
+  // Agregar tarea
   function addTask() {
     if (textInput.trim() === "") return;
     const newTask = { id: Date.now(), text: textInput, isDone: false };
@@ -17,12 +23,27 @@ const TasksContext = ({ children }) => {
     setTextInput("");
   }
 
+  // Eliminar tarea
   function deleteTask(value) {
     const removeTask = tasks.filter((item) => item.id !== value);
     setTasks(removeTask);
   }
 
-  const valor = { tasks, addTask, deleteTask, setTextInput, textInput };
+  // Editar tarea
+  function editTask(value) {
+    setIsAvilable(true);
+  }
+
+  const valor = {
+    tasks,
+    addTask,
+    deleteTask,
+    setTextInput,
+    textInput,
+    isAvilable,
+    setIsAvilable,
+    editTask,
+  };
 
   return <Tasks.Provider value={valor}>{children}</Tasks.Provider>;
 };
