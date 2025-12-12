@@ -19,11 +19,12 @@ import Section from "../components/Section";
 import Tasks from "../components/Tasks";
 import Warning from "../components/Warning";
 import NotAvailable from "../components/Modals_types/NotAvailable";
+import RevertIndex from "../utils/RevertIndex";
 
 const index = () => {
   const { tasks, deleteTask, editTask, isComplete, completeTask } = useTasks();
 
-  // console.log(Date.now());
+  const tasksFlash = RevertIndex(tasks);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -61,7 +62,7 @@ const index = () => {
             style={tw`w-[95%] flex-1 min-h-120`}
           >
             <Section NumTasks={tasks.length}>
-              {tasks.map((item, i) => {
+              {tasksFlash.map((item, i) => {
                 return (
                   <Tasks
                     key={item.id}
