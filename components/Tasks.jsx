@@ -28,8 +28,8 @@ const Tasks = ({ isDone, text, remove, edit, complete }) => {
         </Text>
       </View>
       <View style={tw`flex-row gap-1`}>
-        <ButtonEdit action={edit} />
-        <ButtonDelete action={remove} />
+        {!isDone && <ButtonEdit action={edit} />}
+        <ButtonDelete action={remove} fondo={isDone} />
       </View>
     </View>
   );

@@ -7,13 +7,13 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 // Librerias
 import tw from "twrnc";
 
-const ButtonDelete = ({ action }) => {
+const ButtonDelete = ({ action, fondo }) => {
   return (
     <Pressable
       style={({ pressed }) => [
-        tw`${
-          pressed ? "opacity-80" : "opacity-100"
-        } bg-red-500 justify-center items-center size-8 rounded-lg shadow-md`,
+        tw`${pressed ? "opacity-80" : "opacity-100"} ${
+          fondo ? "bg-black" : "bg-red-500"
+        } justify-center items-center size-8 rounded-lg shadow-md`,
       ]}
       onPress={action}
     >
