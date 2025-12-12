@@ -21,7 +21,10 @@ import Warning from "../components/Warning";
 import NotAvailable from "../components/Modals_types/NotAvailable";
 
 const index = () => {
-  const { tasks, deleteTask, editTask } = useTasks();
+  const { tasks, deleteTask, editTask, isComplete, completeTask } = useTasks();
+
+  // console.log(Date.now());
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
@@ -58,13 +61,14 @@ const index = () => {
             style={tw`w-[95%] flex-1 min-h-120`}
           >
             <Section>
-              {tasks.map((item) => {
+              {tasks.map((item, i) => {
                 return (
                   <Tasks
                     key={item.id}
                     isDone={item.isDone}
                     text={item.text}
                     remove={() => deleteTask(item.id)}
+                    complete={item.id}
                     edit={editTask}
                   />
                 );

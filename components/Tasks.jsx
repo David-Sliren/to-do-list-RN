@@ -9,12 +9,12 @@ import CheckBox from "./CheckBox";
 import ButtonDelete from "./ButtonDelete";
 import ButtonEdit from "./ButtonEdit";
 
-const Tasks = ({ isDone, text, remove, edit }) => {
+const Tasks = ({ isDone, text, remove, edit, complete }) => {
   return (
     <View
       style={tw`bg-sky-200 flex-row justify-between items-center gap-2 px-3 w-full h-15 rounded-md shadow-md`}
     >
-      <CheckBox isSelect={isDone} />
+      <CheckBox isSelect={isDone} element={complete} />
       <View style={tw`flex-1 px-2`}>
         <Text numberOfLines={2} style={tw`text-md text-start font-bold`}>
           {text}

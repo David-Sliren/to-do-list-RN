@@ -1,5 +1,11 @@
 // React
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { View, Text } from "react-native";
 import asyncStorage from "@react-native-async-storage/async-storage";
 
@@ -13,6 +19,9 @@ const TasksContext = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   // Texto
   const [textInput, setTextInput] = useState("");
+
+  // completadas
+  const [isComplete, setIsComplete] = useState(false);
 
   // Caracteristicas Desativadas
   const [isAvilable, setIsAvilable] = useState(false);
@@ -53,7 +62,7 @@ const TasksContext = ({ children }) => {
     if (!isLoading) {
       saveData(tasks);
     }
-  }, [tasks, isLoading]);
+  }, [tasks, isLoading, isComplete]);
 
   // Agregar tarea
   function addTask() {
@@ -71,6 +80,20 @@ const TasksContext = ({ children }) => {
     setTasks(removeTask);
   }
 
+  // Completar tarea
+  const completeTask = (value) => {
+    setIsComplete(!isComplete);
+
+    const newTask = tasks.map((item) => {
+      if (item.id === value) {
+        return { ...item, isDone: !item.isDone };
+      }
+      return item;
+    });
+
+    setTasks(newTask);
+  };
+
   // Editar tarea
   function editTask(value) {
     setIsAvilable(true);
@@ -86,6 +109,9 @@ const TasksContext = ({ children }) => {
     isAvilable,
     setIsAvilable,
     editTask,
+    isComplete,
+    setIsComplete,
+    completeTask,
   };
 
   return <Tasks.Provider value={valor}>{children}</Tasks.Provider>;
