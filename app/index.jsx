@@ -60,7 +60,7 @@ const index = () => {
             contentContainerStyle={tw`items-center p-2`}
             style={tw`w-[95%] flex-1 min-h-120`}
           >
-            <Section>
+            <Section NumTasks={tasks.length}>
               {tasks.map((item, i) => {
                 return (
                   <Tasks
