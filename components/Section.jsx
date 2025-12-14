@@ -10,7 +10,7 @@ import tw from "twrnc";
 const Section = ({ children, title = "Tareas Rapidas", NumTasks = 0 }) => {
   return (
     <View
-      style={tw`flex-1 gap-2 overflow-hidden bg-zinc-200/45 w-full h-120 px-4 py-6 mb-12`}
+      style={tw`flex-1 gap-2 overflow-hidden bg-zinc-200/45 w-full min-h-20 px-4 py-6 mb-5`}
     >
       <View style={tw`flex-row gap-1 items-center`}>
         <Text style={tw`text-black text-lg font-bold`}>{title}</Text>
@@ -22,8 +22,8 @@ const Section = ({ children, title = "Tareas Rapidas", NumTasks = 0 }) => {
       </View>
 
       <ScrollView
-        contentContainerStyle={tw` py-5 items-center gap-4`}
-        style={tw`flex-1 bg-transparent w-full`}
+        contentContainerStyle={tw` py-5 `}
+        style={tw`bg-transparent w-full`}
       >
         {children}
       </ScrollView>

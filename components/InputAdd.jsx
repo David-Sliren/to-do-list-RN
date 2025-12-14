@@ -13,11 +13,11 @@ const InputAdd = () => {
 
   return (
     <View
-      style={tw`flex-row justify-between  w-10/12 overflow-hidden rounded-xl h-12 border-2 shadow-lg`}
+      style={tw`flex-row justify-between  w-10/12 overflow-hidden rounded-xl h-14 border-2 shadow-lg`}
     >
       <TextInput
         placeholder="Agrega una tarea"
-        style={tw`p-2 w-10/12 h-full bg-sky-200/96 border-r-2 text-black text-sm font-extrabold`}
+        style={tw`p-2 pl-3 w-10/12 h-full bg-sky-200/96 border-r-2 text-black text-lg font-extrabold`}
         value={textInput}
         onChangeText={setTextInput}
         onSubmitEditing={addTask}
@@ -30,7 +30,7 @@ const InputAdd = () => {
           } justify-center items-center w-2/12 h-full bg-sky-400`,
         ]}
       >
-        <Ionicons name="add" size={20} color="black" />
+        <Ionicons name="add" size={25} color="black" />
       </Pressable>
     </View>
   );

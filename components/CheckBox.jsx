@@ -16,8 +16,8 @@ const CheckBox = ({ isSelect = false, element }) => {
       style={({ pressed }) => [
         tw` ${pressed ? "opacity-80" : "opacity-100"}
         ${
-          isSelect ? "bg-zinc-900" : "bg-zinc-300/80 border-black"
-        }  justify-center items-center size-7 rounded-lg border-2 shadow-md`,
+          isSelect ? "bg-zinc-900" : "bg-transparent border-black"
+        }  justify-center items-center size-7 rounded-lg border-2`,
       ]}
       onPress={() => completeTask(element)}
     >
