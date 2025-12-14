@@ -7,7 +7,7 @@ import { LinearGradient } from "expo-linear-gradient";
 // Librerias
 
 import tw from "twrnc";
-import { MotiView } from "moti";
+import { AnimatePresence } from "moti";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Context
@@ -62,18 +62,22 @@ const index = () => {
             style={tw`w-[95%] flex-1 min-h-120`}
           >
             <Section NumTasks={tasks.length}>
-              {tasksFlash.map((item, i) => {
-                return (
-                  <Tasks
-                    key={item.id}
-                    isDone={item.isDone}
-                    text={item.text}
-                    remove={() => deleteTask(item.id)}
-                    complete={item.id}
-                    edit={editTask}
-                  />
-                );
-              })}
+              <AnimatePresence>
+                {tasksFlash.map((item, i) => {
+                  return (
+                    <Tasks
+                      key={item.id}
+                      isDone={item.isDone}
+                      text={item.text}
+                      remove={() => deleteTask(item.id)}
+                      complete={item.id}
+                      edit={editTask}
+                      isAnimate={item.animate}
+                      desableAnimate={item}
+                    />
+                  );
+                })}
+              </AnimatePresence>
             </Section>
           </ScrollView>
         </View>

@@ -67,7 +67,12 @@ const TasksContext = ({ children }) => {
   // Agregar tarea
   function addTask() {
     if (textInput.trim() === "") return;
-    const newTask = { id: Date.now(), text: textInput, isDone: false };
+    const newTask = {
+      id: Date.now(),
+      text: textInput,
+      isDone: false,
+      animate: true,
+    };
 
     setTasks((prevTask) => [...prevTask, newTask]);
 
