@@ -22,13 +22,22 @@ const Tasks = ({
   return (
     <MotiView
       from={isAnimate ? { opacity: 0.8, scale: 0 } : false}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 280, type: "spring" }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        backgroundColor: isDone ? "#b9f8cf" : "#b8e6fe",
+      }}
+      transition={{
+        duration: 280,
+        type: "spring",
+        backgroundColor: {
+          type: "timing",
+          duration: 290,
+        },
+      }}
       exit={{ opacity: 0, scale: 0 }}
       onDidAnimate={() => (desableAnimate.animate = false)}
-      style={tw`${
-        isDone ? "bg-green-200 " : "bg-sky-200 "
-      } flex-row justify-between items-center gap-2 px-3 w-full h-20 mt-3 rounded-md shadow-md`}
+      style={tw`flex-row justify-between items-center gap-2 px-3 w-full h-20 mt-3 rounded-md shadow-md`}
     >
       <CheckBox isSelect={isDone} element={complete} />
       <View style={tw`flex-1 px-2`}>
