@@ -3916,7 +3916,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-constants@npm:~18.0.11":
+"expo-constants@npm:18.0.11, expo-constants@npm:~18.0.11":
   version: 18.0.11
   resolution: "expo-constants@npm:18.0.11"
   dependencies:
@@ -4013,7 +4013,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-router@npm:~6.0.17":
+"expo-router@npm:6.0.17":
   version: 6.0.17
   resolution: "expo-router@npm:6.0.17"
   dependencies:
@@ -7633,11 +7633,11 @@ __metadata:
     babel-preset-expo: "npm:^54.0.7"
     expo: "npm:~54.0.27"
     expo-blur: "npm:~15.0.8"
-    expo-constants: "npm:~18.0.11"
+    expo-constants: "npm:18.0.11"
     expo-font: "npm:~14.0.10"
     expo-linear-gradient: "npm:~15.0.8"
     expo-linking: "npm:~8.0.10"
-    expo-router: "npm:~6.0.17"
+    expo-router: "npm:6.0.17"
     expo-splash-screen: "npm:~31.0.12"
     expo-status-bar: "npm:~3.0.9"
     moti: "npm:^0.30.0"
