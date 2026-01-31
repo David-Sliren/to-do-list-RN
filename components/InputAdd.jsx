@@ -1,11 +1,9 @@
-import { View, Text, TextInput, Pressable } from "react-native";
-import { MotiView } from "moti";
+import { View, TextInput, Pressable } from "react-native";
 import tw from "twrnc";
 
 // import Ionicons from '@expo/vector-icons/Ionicons';
 
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
 import { useTasks } from "../context/TasksContext";
 
 const InputAdd = () => {

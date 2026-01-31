@@ -1,12 +1,5 @@
 // React
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { View, Text } from "react-native";
+import { createContext, useContext, useEffect, useState } from "react";
 import asyncStorage from "@react-native-async-storage/async-storage";
 
 const Tasks = createContext();

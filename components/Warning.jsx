@@ -1,5 +1,5 @@
 // React
-import { Modal, Text } from "react-native";
+import { Modal } from "react-native";
 
 // Context
 import { useTasks } from "../context/TasksContext";

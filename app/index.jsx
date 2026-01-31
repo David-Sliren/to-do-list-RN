@@ -21,7 +21,7 @@ import Warning from "../components/Warning";
 import NotAvailable from "../components/Modals_types/NotAvailable";
 import RevertIndex from "../utils/RevertIndex";
 
-const index = () => {
+const Index = () => {
   const { tasks, deleteTask, editTask, isComplete, completeTask } = useTasks();
 
   const tasksFlash = RevertIndex(tasks);
@@ -85,4 +85,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

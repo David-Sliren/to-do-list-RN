@@ -1,9 +1,6 @@
 // React
 import { View, Text, ScrollView } from "react-native";
 
-// Expo
-import { LinearGradient } from "expo-linear-gradient";
-
 // Librerias
 import tw from "twrnc";
 

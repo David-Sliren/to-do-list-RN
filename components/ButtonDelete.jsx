@@ -1,5 +1,5 @@
 // React
-import { View, Text, Pressable } from "react-native";
+import { Pressable } from "react-native";
 
 // Expo
 import Ionicons from "@expo/vector-icons/Ionicons";
