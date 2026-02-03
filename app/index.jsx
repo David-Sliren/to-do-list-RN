@@ -1,5 +1,5 @@
 // React
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 // Expo
 import { LinearGradient } from "expo-linear-gradient";
@@ -7,40 +7,29 @@ import { LinearGradient } from "expo-linear-gradient";
 // Librerias
 
 import tw from "twrnc";
-import { AnimatePresence } from "moti";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Context
 import { useTasks } from "../context/TasksContext";
 
+// Constants
+import { colorBody } from "../constants/colorsPrincipals";
+
 // Componentes
-import InputAdd from "../components/InputAdd";
-import Section from "../components/Section";
-import Tasks from "../components/Tasks";
-import Warning from "../components/Warning";
-import NotAvailable from "../components/Modals_types/NotAvailable";
-import RevertIndex from "../utils/RevertIndex";
+import Activity from "../components/Activity";
+import AddActivity from "../components/AddActivity";
 
 const Index = () => {
-  const { tasks, deleteTask, editTask } = useTasks();
-
-  const tasksFlash = RevertIndex(tasks);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View
-        style={tw` flex-1 items-center overflow-hidden w-full h-full bg-zinc-200/45`}
-      >
+      <View style={tw` flex-1 items-center overflow-hidden bg-zinc-200/45`}>
         <LinearGradient
-          colors={["transparent", "#befaff"]}
+          colors={[colorBody.transparent, colorBody.aqua]}
           locations={[0.8, 1]}
           start={{ x: 0.5, y: 1 }}
           end={{ x: 0.5, y: 0 }}
-          style={(tw`flex-1 z-50`, StyleSheet.absoluteFill)}
+          style={[tw`flex-1 z-50`, StyleSheet.absoluteFill]}
         />
-        <Warning>
-          <NotAvailable />
-        </Warning>
 
         <View style={tw`mb-10 mt-25 items-center gap-8.9 `}>
           <Text
@@ -53,33 +42,14 @@ const Index = () => {
               },
             ]}
           >
-            Lista de tareas
+            RENPETAIN
           </Text>
-          <InputAdd />
         </View>
-        <ScrollView
-          contentContainerStyle={tw`items-center`}
-          style={tw`w-full flex-1`}
-        >
-          <Section NumTasks={tasks.length}>
-            <AnimatePresence>
-              {tasksFlash.map((item, i) => {
-                return (
-                  <Tasks
-                    key={item.id}
-                    isDone={item.isDone}
-                    text={item.text}
-                    remove={() => deleteTask(item.id)}
-                    complete={item.id}
-                    edit={editTask}
-                    isAnimate={item.animate}
-                    desableAnimate={item}
-                  />
-                );
-              })}
-            </AnimatePresence>
-          </Section>
-        </ScrollView>
+        <View style={tw` flex-row flex-wrap  gap-2 w-full justify-center p-2`}>
+          <Activity title="Tareas diarias" icon="medical" />
+          <Activity title="Compras" icon="cart" />
+          <AddActivity />
+        </View>
       </View>
     </SafeAreaView>
   );
