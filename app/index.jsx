@@ -22,7 +22,7 @@ import NotAvailable from "../components/Modals_types/NotAvailable";
 import RevertIndex from "../utils/RevertIndex";
 
 const Index = () => {
-  const { tasks, deleteTask, editTask, isComplete, completeTask } = useTasks();
+  const { tasks, deleteTask, editTask } = useTasks();
 
   const tasksFlash = RevertIndex(tasks);
 
