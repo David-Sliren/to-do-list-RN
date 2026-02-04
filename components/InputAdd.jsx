@@ -1,35 +1,16 @@
-import { View, TextInput, Pressable } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import tw from "twrnc";
 
 // import Ionicons from '@expo/vector-icons/Ionicons';
 
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useTasks } from "../context/TasksContext";
-
-const InputAdd = () => {
-  const { textInput, addTask, setTextInput } = useTasks();
-
+const InputAdd = ({ label = "", placeholderInput = "" }) => {
   return (
-    <View
-      style={tw`flex-row justify-between  w-10/12 overflow-hidden rounded-xl h-14 border-2 shadow-lg`}
-    >
+    <View style={tw`w-full`}>
+      <Text style={tw`text-lg pl-1`}>{label}</Text>
       <TextInput
-        placeholder="Agrega una tarea"
-        style={tw`p-2 pl-3 w-10/12 h-full bg-sky-200/96 border-r-2 text-black text-lg font-extrabold`}
-        value={textInput}
-        onChangeText={setTextInput}
-        onSubmitEditing={addTask}
+        placeholder={placeholderInput}
+        style={tw`bg-sky-500 w-full p-2 py-4 text-black text-xl rounded-xl`}
       />
-      <Pressable
-        onPress={addTask}
-        style={({ pressed }) => [
-          tw`${
-            pressed ? "opacity-80" : "opacity-100"
-          } justify-center items-center w-2/12 h-full bg-sky-400`,
-        ]}
-      >
-        <Ionicons name="add" size={25} color="black" />
-      </Pressable>
     </View>
   );
 };

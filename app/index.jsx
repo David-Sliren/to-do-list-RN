@@ -5,12 +5,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 // Librerias
-
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-// Context
-import { useTasks } from "../context/TasksContext";
 
 // Constants
 import { colorBody } from "../constants/colorsPrincipals";
@@ -28,7 +24,7 @@ const Index = () => {
           locations={[0.8, 1]}
           start={{ x: 0.5, y: 1 }}
           end={{ x: 0.5, y: 0 }}
-          style={[tw`flex-1 z-50`, StyleSheet.absoluteFill]}
+          style={[tw`flex-1`, StyleSheet.absoluteFill]}
         />
 
         <View style={tw`mb-10 mt-25 items-center gap-8.9 `}>
@@ -47,7 +43,7 @@ const Index = () => {
         </View>
         <View style={tw` flex-row flex-wrap  gap-2 w-full justify-center p-2`}>
           <Activity title="Tareas diarias" icon="medical" />
-          <Activity title="Compras" icon="cart" />
+          <Activity title="Compras" icon="cart" route="/shopping" />
           <AddActivity />
         </View>
       </View>
