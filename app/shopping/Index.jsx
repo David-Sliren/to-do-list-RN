@@ -19,21 +19,36 @@ import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import InputAdd from "../../components/InputAdd";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
+import { useShopping } from "../../store/shopping.store";
 
 const Index = () => {
   const sheetsRef = useRef(null);
   const [addSection, setAddSection] = useState(false);
 
-  function handleClick() {
+  // Estado global supermercado
+  const supermarket = useShopping((state) => state.supermarket);
+
+  const inputSupermarket = useShopping((state) => state.inputSupermarket);
+  const updateInputSupermarket = useShopping(
+    (state) => state.updateInputSupermarket,
+  );
+  const setSupermarket = useShopping((state) => state.setSupermarket);
+  const deleteSupermarket = useShopping((state) => state.deleteSupermarket);
+
+  function handlePress() {
     if (addSection) {
       sheetsRef.current?.close();
       setAddSection(false);
-      // console.log("hola");
       return;
     }
     sheetsRef.current?.expand();
     setAddSection(true);
-    // console.log("que mas");
+  }
+
+  function handleNewSupermarket() {
+    setSupermarket();
+    sheetsRef.current?.close();
+    setAddSection(true);
   }
 
   return (
@@ -80,25 +95,38 @@ const Index = () => {
         tint="dark"
         style={tw`flex-1 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
       >
-        <ButtonAdd action={handleClick} />
+        <ButtonAdd action={handlePress} />
 
         <ScrollView
           contentContainerStyle={tw`gap-3 pb-10`}
           showsVerticalScrollIndicator={false}
         >
-          <Supermarket title="Surtifamiliar" total={12} />
-          <Supermarket title="Mercapaba" total={20} />
-          <Supermarket title="Ara" total={12} />
-          <Supermarket title="D1" total={20} />
+          {supermarket.map((item) => (
+            <Supermarket
+              key={item.id}
+              title={item.name}
+              deleteItem={() => deleteSupermarket(item.id)}
+            />
+          ))}
         </ScrollView>
       </BlurView>
       <ModalSeccion
         ref={sheetsRef}
         action={() => setAddSection(false)}
-        title="Agregar seccion"
+        title="Supermercado"
         size="66%"
       >
-        <InputAdd label="Nombre" placeholderInput="Agregar nombre seccion" />
+        <InputAdd
+          label="Nombre"
+          placeholderInput="Agregar supermercado"
+          value={inputSupermarket}
+          action={updateInputSupermarket}
+          maxCharater={18}
+        />
+
+        <Pressable onPress={handleNewSupermarket}>
+          <Text>Agregar</Text>
+        </Pressable>
       </ModalSeccion>
     </SafeAreaView>
   );

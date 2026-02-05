@@ -4,8 +4,10 @@ import { Text, Pressable } from "react-native";
 
 // Librerias
 import tw from "twrnc";
+import ButtonDelete from "./ButtonDelete";
+import { View } from "moti";
 
-const Supermarket = ({ total, title = "" }) => {
+const Supermarket = ({ total, title = "", deleteItem }) => {
   return (
     <BlurView
       intensity={40}
@@ -14,8 +16,10 @@ const Supermarket = ({ total, title = "" }) => {
     >
       <Pressable style={tw`flex-row justify-between items-center p-6`}>
         <Text style={tw`text-xl`}>{title}</Text>
-
-        <Text style={tw`text-xl font-semibold`}>{total}</Text>
+        <View style={tw`flex-row gap-2 items-center`}>
+          {/* <Text style={tw`text-xl font-semibold`}>{total}</Text> */}
+          <ButtonDelete action={deleteItem} />
+        </View>
       </Pressable>
     </BlurView>
   );
