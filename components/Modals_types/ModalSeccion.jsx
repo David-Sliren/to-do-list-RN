@@ -11,7 +11,6 @@ import BottomSheet, {
 } from "@gorhom/bottom-sheet";
 import tw from "twrnc";
 import { View } from "moti";
-import InputAdd from "../InputAdd";
 
 const ModalSeccion = forwardRef(function ModalSeccion(
   { children, title, action, size = "20%" },

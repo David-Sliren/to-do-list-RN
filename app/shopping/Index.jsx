@@ -1,5 +1,8 @@
+// React
+import { useRef, useState } from "react";
+
 // RN
-import { View, Text, Pressable, ScrollView } from "react-native";
+import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
 
 // expo
 import { Ionicons } from "@expo/vector-icons";
@@ -12,9 +15,10 @@ import tw from "twrnc";
 import { colorBody } from "../../constants/colorsPrincipals";
 import Supermarket from "../../components/Supermarket";
 import ButtonAdd from "../../components/ButtonAdd";
-import { useRef, useState } from "react";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import InputAdd from "../../components/InputAdd";
+import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -33,28 +37,61 @@ const Index = () => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: colorBody.aqua, flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorBody.aqua }}>
+      <LinearGradient
+        colors={[colorBody.aqua, "#ffffff80"]}
+        locations={[0, 1]}
+        start={{ x: 0.2, y: 0.8 }}
+        end={{ x: 1, y: 0.5 }}
+        style={StyleSheet.absoluteFill}
+      />
       <View style={tw``}>
-        <View style={tw`flex-row justify-between items-center py-2 px-4`}>
+        <View style={tw`flex-row justify-between items-center pt-8 pb-8 px-6`}>
           <View>
-            <Text style={tw`text-4xl font-semibold`}>Compras</Text>
+            <Text
+              style={[
+                tw`text-4xl font-bold text-slate-800`,
+                {
+                  textShadowColor: "rgba(0,0,0,0.15)",
+                  textShadowOffset: { width: 0, height: 2 },
+                  textShadowRadius: 4,
+                },
+              ]}
+            >
+              Compras
+            </Text>
+            <Text style={tw`text-slate-800/80 text-base font-medium mt-1`}>
+              Tu lista de supermercado
+            </Text>
           </View>
-          <Pressable>
-            <Ionicons name="cart" style={tw`text-5xl text-white`} />
-          </Pressable>
+          <BlurView
+            intensity={20}
+            tint="dark"
+            style={tw`size-14 justify-center items-center border-black/20 border rounded-2xl overflow-hidden`}
+          >
+            <Pressable>
+              <Ionicons name="cart" style={tw`text-3xl text-black/80`} />
+            </Pressable>
+          </BlurView>
         </View>
       </View>
-      <View style={tw`flex-1 bg-sky-400 rounded-t-[12] pt-10`}>
+      <BlurView
+        intensity={20}
+        tint="dark"
+        style={tw`flex-1 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
+      >
         <ButtonAdd action={handleClick} />
-        <View style={tw`flex-row justify-between items-center py-2 px-4`}>
-          <ScrollView contentContainerStyle={tw`w-full gap-2 py-2`}>
-            <Supermarket title="Surtifamiliar" total={12} />
-            <Supermarket title="Mercapaba" total={20} />
-            <Supermarket title="Ara" total={12} />
-            <Supermarket title="D1" total={20} />
-          </ScrollView>
-        </View>
-      </View>
+
+        <ScrollView
+          contentContainerStyle={tw`gap-3 pb-10`}
+          showsVerticalScrollIndicator={false}
+        >
+          <Supermarket title="Surtifamiliar" total={12} />
+          <Supermarket title="Mercapaba" total={20} />
+          <Supermarket title="Ara" total={12} />
+          <Supermarket title="D1" total={20} />
+        </ScrollView>
+      </BlurView>
       <ModalSeccion
         ref={sheetsRef}
         action={() => setAddSection(false)}
