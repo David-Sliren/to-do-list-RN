@@ -24,16 +24,18 @@ import { useShopping } from "../../store/shopping.store";
 const Index = () => {
   const sheetsRef = useRef(null);
   const [addSection, setAddSection] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   // Estado global supermercado
   const supermarket = useShopping((state) => state.supermarket);
 
-  const inputSupermarket = useShopping((state) => state.inputSupermarket);
+  const { text } = useShopping((state) => state.inputSupermarket);
   const updateInputSupermarket = useShopping(
     (state) => state.updateInputSupermarket,
   );
   const setSupermarket = useShopping((state) => state.setSupermarket);
   const deleteSupermarket = useShopping((state) => state.deleteSupermarket);
+  const editSupermarket = useShopping((state) => state.editSupermarket);
 
   function handlePress() {
     if (addSection) {
@@ -41,14 +43,23 @@ const Index = () => {
       setAddSection(false);
       return;
     }
+    updateInputSupermarket("");
     sheetsRef.current?.expand();
     setAddSection(true);
+    setIsEdit(false);
   }
 
   function handleNewSupermarket() {
     setSupermarket();
     sheetsRef.current?.close();
     setAddSection(true);
+  }
+
+  function handleEditSupermarket(value) {
+    editSupermarket(value);
+    sheetsRef.current?.expand();
+    setAddSection(false);
+    setIsEdit(true);
   }
 
   return (
@@ -106,6 +117,7 @@ const Index = () => {
               key={item.id}
               title={item.name}
               deleteItem={() => deleteSupermarket(item.id)}
+              editItem={() => handleEditSupermarket(item.id)}
             />
           ))}
         </ScrollView>
@@ -113,13 +125,13 @@ const Index = () => {
       <ModalSeccion
         ref={sheetsRef}
         action={() => setAddSection(false)}
-        title="Supermercado"
+        title={isEdit ? "Editar" : "Supermercado"}
         size="66%"
       >
         <InputAdd
           label="Nombre"
-          placeholderInput="Agregar supermercado"
-          value={inputSupermarket}
+          placeholderInput={isEdit ? "Editar nombre" : "Agregar supermercado"}
+          value={text}
           action={updateInputSupermarket}
           maxCharater={18}
         />

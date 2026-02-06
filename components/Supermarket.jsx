@@ -4,10 +4,12 @@ import { Text, Pressable } from "react-native";
 
 // Librerias
 import tw from "twrnc";
-import ButtonDelete from "./ButtonDelete";
 import { View } from "moti";
 
-const Supermarket = ({ total, title = "", deleteItem }) => {
+import ButtonDelete from "./ButtonDelete";
+import ButtonEdit from "./ButtonEdit";
+
+const Supermarket = ({ total, title = "", deleteItem, editItem }) => {
   return (
     <BlurView
       intensity={40}
@@ -18,6 +20,7 @@ const Supermarket = ({ total, title = "", deleteItem }) => {
         <Text style={tw`text-xl`}>{title}</Text>
         <View style={tw`flex-row gap-2 items-center`}>
           {/* <Text style={tw`text-xl font-semibold`}>{total}</Text> */}
+          <ButtonEdit action={editItem} />
           <ButtonDelete action={deleteItem} />
         </View>
       </Pressable>
