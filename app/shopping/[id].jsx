@@ -1,10 +1,13 @@
 import { View, Text } from "react-native";
+import ShoppingScreen from "../../components/screens/ShoppingScreen";
 
 function Products() {
   return (
-    <View>
-      <Text>Holle</Text>
-    </View>
+    <ShoppingScreen>
+      <View>
+        <Text>Holle</Text>
+      </View>
+    </ShoppingScreen>
   );
 }
 

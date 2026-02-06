@@ -2,24 +2,22 @@
 import { useRef, useState } from "react";
 
 // RN
-import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
+import { View, Text, Pressable, ScrollView } from "react-native";
 
 // expo
 import { Ionicons } from "@expo/vector-icons";
 
 // Librerias
-import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "twrnc";
 
 // constants
-import { colorBody } from "../../constants/colorsPrincipals";
 import Supermarket from "../../components/Supermarket";
 import ButtonAdd from "../../components/ButtonAdd";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import InputAdd from "../../components/InputAdd";
 import { BlurView } from "expo-blur";
-import { LinearGradient } from "expo-linear-gradient";
 import { useShopping } from "../../store/shopping.store";
+import ShoppingScreen from "../../components/screens/ShoppingScreen";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -63,14 +61,7 @@ const Index = () => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colorBody.aqua }}>
-      <LinearGradient
-        colors={[colorBody.aqua, "#ffffff80"]}
-        locations={[0, 1]}
-        start={{ x: 0.2, y: 0.8 }}
-        end={{ x: 1, y: 0.5 }}
-        style={StyleSheet.absoluteFill}
-      />
+    <ShoppingScreen>
       <View style={tw``}>
         <View style={tw`flex-row justify-between items-center pt-8 pb-8 px-6`}>
           <View>
@@ -141,7 +132,7 @@ const Index = () => {
           <Text>Agregar</Text>
         </Pressable>
       </ModalSeccion>
-    </SafeAreaView>
+    </ShoppingScreen>
   );
 };
 
