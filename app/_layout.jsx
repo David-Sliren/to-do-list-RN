@@ -4,17 +4,20 @@ import { Stack } from "expo-router";
 // Context
 import TasksContext from "../context/TasksContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function _layout() {
   return (
-    <TasksContext>
+    <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        />
+        <TasksContext>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
+        </TasksContext>
       </GestureHandlerRootView>
-    </TasksContext>
+    </SafeAreaProvider>
   );
 }
