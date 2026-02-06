@@ -115,6 +115,7 @@ const Index = () => {
           {supermarket.map((item) => (
             <Supermarket
               key={item.id}
+              id={item.id}
               title={item.name}
               deleteItem={() => deleteSupermarket(item.id)}
               editItem={() => handleEditSupermarket(item.id)}
