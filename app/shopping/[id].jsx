@@ -1,9 +1,18 @@
-import { Text, View } from "react-native";
+// RN
+// import { Pressable, Text, View } from "react-native";
+
+// Expo
+import { useLocalSearchParams } from "expo-router";
+
+// Librerias
+// import tw from "twrnc";
+
+// Componentes
 import ShoppingScreen from "../../components/screens/ShoppingScreen";
 import BannerTitle from "../../components/BannerTitle";
-import { useLocalSearchParams } from "expo-router";
 import { useShopping } from "../../store/shopping.store";
 import BannerList from "../../components/BannerList";
+import CheckItem from "../../components/CheckItem";
 
 function Products() {
   const { id } = useLocalSearchParams();
@@ -14,13 +23,13 @@ function Products() {
     <ShoppingScreen>
       <BannerTitle
         title={name}
-        subTitle="Tu lista de compras"
+        subTitle={`Tus compras en ${name}`}
         icon="bag-handle"
       />
       <BannerList>
-        <View>
-          <Text>{id}</Text>
-        </View>
+        {Array.from("abcdariojajaja").map((_, i) => (
+          <CheckItem key={i} />
+        ))}
       </BannerList>
     </ShoppingScreen>
   );
