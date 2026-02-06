@@ -7,8 +7,8 @@ import BannerList from "../../components/BannerList";
 
 function Products() {
   const { id } = useLocalSearchParams();
-  const { name } = useShopping((state) => state.supermarket[0]);
-  //   const nom = supermarket.find((item) => item.id === id);
+  const supermarket = useShopping((state) => state.supermarket);
+  const { name } = supermarket.find((item) => item.id === Number(id));
 
   return (
     <ShoppingScreen>
