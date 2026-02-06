@@ -18,6 +18,8 @@ import InputAdd from "../../components/InputAdd";
 import { BlurView } from "expo-blur";
 import { useShopping } from "../../store/shopping.store";
 import ShoppingScreen from "../../components/screens/ShoppingScreen";
+import BannerTitle from "../../components/BannerTitle";
+import BannerList from "../../components/BannerList";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -63,57 +65,23 @@ const Index = () => {
   return (
     <ShoppingScreen>
       <View style={tw``}>
-        <View style={tw`flex-row justify-between items-center pt-8 pb-8 px-6`}>
-          <View>
-            <Text
-              style={[
-                tw`text-4xl font-bold text-slate-800`,
-                {
-                  textShadowColor: "rgba(0,0,0,0.15)",
-                  textShadowOffset: { width: 0, height: 2 },
-                  textShadowRadius: 4,
-                },
-              ]}
-            >
-              Compras
-            </Text>
-            <Text style={tw`text-slate-800/80 text-base font-medium mt-1`}>
-              Tu lista de supermercado
-            </Text>
-          </View>
-          <BlurView
-            intensity={20}
-            tint="dark"
-            style={tw`size-14 justify-center items-center border-black/20 border rounded-2xl overflow-hidden`}
-          >
-            <Pressable>
-              <Ionicons name="cart" style={tw`text-3xl text-black/80`} />
-            </Pressable>
-          </BlurView>
-        </View>
+        <BannerTitle
+          title="Compras"
+          subTitle="Tu lista de supermercado"
+          icon="cart"
+        />
       </View>
-      <BlurView
-        intensity={20}
-        tint="dark"
-        style={tw`flex-1 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
-      >
-        <ButtonAdd action={handlePress} />
-
-        <ScrollView
-          contentContainerStyle={tw`gap-3 pb-10`}
-          showsVerticalScrollIndicator={false}
-        >
-          {supermarket.map((item) => (
-            <Supermarket
-              key={item.id}
-              id={item.id}
-              title={item.name}
-              deleteItem={() => deleteSupermarket(item.id)}
-              editItem={() => handleEditSupermarket(item.id)}
-            />
-          ))}
-        </ScrollView>
-      </BlurView>
+      <BannerList>
+        {supermarket.map((item) => (
+          <Supermarket
+            key={item.id}
+            id={item.id}
+            title={item.name}
+            deleteItem={() => deleteSupermarket(item.id)}
+            editItem={() => handleEditSupermarket(item.id)}
+          />
+        ))}
+      </BannerList>
       <ModalSeccion
         ref={sheetsRef}
         action={() => setAddSection(false)}
