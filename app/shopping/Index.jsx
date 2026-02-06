@@ -1,41 +1,35 @@
 // React
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 // RN
-import { View, Text, Pressable, ScrollView } from "react-native";
-
-// expo
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, Pressable } from "react-native";
 
 // Librerias
 import tw from "twrnc";
 
 // constants
 import Supermarket from "../../components/Supermarket";
-import ButtonAdd from "../../components/ButtonAdd";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import InputAdd from "../../components/InputAdd";
-import { BlurView } from "expo-blur";
-import { useShopping } from "../../store/shopping.store";
 import ShoppingScreen from "../../components/screens/ShoppingScreen";
 import BannerTitle from "../../components/BannerTitle";
 import BannerList from "../../components/BannerList";
+import useShopping_index from "../../hooks/useShopping_index";
 
 const Index = () => {
   const sheetsRef = useRef(null);
-  const [addSection, setAddSection] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-
-  // Estado global supermercado
-  const supermarket = useShopping((state) => state.supermarket);
-
-  const { text } = useShopping((state) => state.inputSupermarket);
-  const updateInputSupermarket = useShopping(
-    (state) => state.updateInputSupermarket,
-  );
-  const setSupermarket = useShopping((state) => state.setSupermarket);
-  const deleteSupermarket = useShopping((state) => state.deleteSupermarket);
-  const editSupermarket = useShopping((state) => state.editSupermarket);
+  const {
+    text,
+    isEdit,
+    addSection,
+    supermarket,
+    setIsEdit,
+    setAddSection,
+    deleteSupermarket,
+    updateInputSupermarket,
+    setSupermarket,
+    editSupermarket,
+  } = useShopping_index();
 
   function handlePress() {
     if (addSection) {
@@ -71,7 +65,7 @@ const Index = () => {
           icon="cart"
         />
       </View>
-      <BannerList>
+      <BannerList action={handlePress}>
         {supermarket.map((item) => (
           <Supermarket
             key={item.id}
