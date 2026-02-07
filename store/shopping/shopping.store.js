@@ -7,7 +7,10 @@ export const useShopping = create((set, get) => ({
   // Supermercado
   updateInputSupermarket: (value) =>
     set((state) => ({
-      inputSupermarket: { text: value, id: state.inputSupermarket.id },
+      inputSupermarket: {
+        text: value.toLowerCase(),
+        id: state.inputSupermarket.id,
+      },
     })),
 
   setSupermarket: () => {
@@ -24,12 +27,12 @@ export const useShopping = create((set, get) => ({
       const addSupermarkets = exist
         ? state.supermarket.map((item) =>
             item.id === idtask
-              ? { ...item, name: state.inputSupermarket.text }
+              ? { ...item, name: state.inputSupermarket.text.toUpperCase() }
               : item,
           )
         : [
             ...get().supermarket,
-            { id: Date.now(), name: get().inputSupermarket.text },
+            { id: Date.now(), name: get().inputSupermarket.text.toUpperCase() },
           ];
 
       return {

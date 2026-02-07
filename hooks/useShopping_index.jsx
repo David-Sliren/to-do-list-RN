@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useShopping } from "../store/shopping.store";
+import { useShopping } from "../store/shopping/shopping.store";
 
 function useShopping_index() {
   const [addSection, setAddSection] = useState(false);

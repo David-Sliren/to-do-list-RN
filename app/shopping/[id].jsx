@@ -10,14 +10,64 @@ import { useLocalSearchParams } from "expo-router";
 // Componentes
 import ShoppingScreen from "../../components/screens/ShoppingScreen";
 import BannerTitle from "../../components/BannerTitle";
-import { useShopping } from "../../store/shopping.store";
 import BannerList from "../../components/BannerList";
 import CheckItem from "../../components/CheckItem";
+import ModalSeccion from "../../components/Modals_types/ModalSeccion";
+import { useRef } from "react";
+import InputAdd from "../../components/InputAdd";
+import { Pressable, Text } from "react-native";
+import useShopping_products from "../../hooks/useShopping_products";
 
 function Products() {
+  // estados
   const { id } = useLocalSearchParams();
-  const supermarket = useShopping((state) => state.supermarket);
-  const { name } = supermarket.find((item) => item.id === Number(id));
+  const sheetsRef = useRef(null);
+
+  // estados globals
+  const {
+    isOpen,
+    isEdit,
+    text,
+    idProduct,
+    products,
+    setIsOpen,
+    setIsEdit,
+    updateInput,
+    addProducts,
+    editProducts,
+    handleChangeStatus,
+    handleDeleteProduct,
+    getStore,
+  } = useShopping_products();
+
+  // name de store
+  const name = getStore(id);
+
+  function handlePress() {
+    if (isOpen) {
+      sheetsRef.current.close();
+      setIsOpen(false);
+      return;
+    }
+
+    updateInput("");
+    setIsEdit(false);
+    sheetsRef.current.expand();
+    setIsOpen(true);
+  }
+
+  function handleAddProduts(value) {
+    addProducts(value);
+    sheetsRef.current.close();
+    setIsOpen(true);
+  }
+
+  function handleEditProduts(value) {
+    editProducts(value);
+    sheetsRef.current.expand();
+    setIsOpen(false);
+    setIsEdit(true);
+  }
 
   return (
     <ShoppingScreen>
@@ -26,11 +76,41 @@ function Products() {
         subTitle={`Tus compras en ${name}`}
         icon="bag-handle"
       />
-      <BannerList>
-        {Array.from("abcdariojajaja").map((_, i) => (
-          <CheckItem key={i} />
+      <BannerList action={handlePress}>
+        {products?.map((item) => (
+          <CheckItem
+            key={item.id}
+            id={item.id}
+            title={item.name}
+            bought={item.isbought}
+            deleteItem={() => handleDeleteProduct(item.id)}
+            changeStatus={() => handleChangeStatus(item.id)}
+            editItem={() => handleEditProduts(item.id)}
+          />
         ))}
       </BannerList>
+      <ModalSeccion
+        ref={sheetsRef}
+        action={setIsOpen}
+        title={isEdit ? "Editar" : "Producto"}
+        size="66%"
+      >
+        <InputAdd
+          label="Nombre"
+          placeholderInput={isEdit ? "Editar producto" : "Agregar producto"}
+          value={text}
+          action={updateInput}
+          maxCharater={32}
+        />
+
+        <Pressable
+          onPress={() =>
+            !isEdit ? handleAddProduts(id) : handleEditProduts(idProduct)
+          }
+        >
+          <Text>Agregar</Text>
+        </Pressable>
+      </ModalSeccion>
     </ShoppingScreen>
   );
 }
