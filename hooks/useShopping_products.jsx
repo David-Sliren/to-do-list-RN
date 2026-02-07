@@ -17,6 +17,9 @@ function useShopping_products() {
   const deleteProducts = useShoppingProducts((state) => state.deleteProducts);
   const getStore = useShoppingProducts((state) => state.getStore);
 
+  const filterStore = (id) =>
+    products.filter((items) => items.idSupermarket === Number(id));
+
   function handleChangeStatus(id) {
     updateProducts(id);
   }
@@ -30,7 +33,7 @@ function useShopping_products() {
     isEdit,
     text,
     idProduct,
-    products,
+    filterStore,
 
     // metodos
     setIsOpen,

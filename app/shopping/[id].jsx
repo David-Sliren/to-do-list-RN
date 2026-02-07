@@ -29,9 +29,10 @@ function Products() {
     isEdit,
     text,
     idProduct,
-    products,
+    filterStore,
     setIsOpen,
     setIsEdit,
+    Products,
     updateInput,
     addProducts,
     editProducts,
@@ -42,6 +43,8 @@ function Products() {
 
   // name de store
   const name = getStore(id);
+
+  const store = filterStore(id);
 
   function handlePress() {
     if (isOpen) {
@@ -64,8 +67,14 @@ function Products() {
 
   function handleEditProduts(value) {
     editProducts(value);
+    if (isOpen) {
+      sheetsRef.current.close();
+      setIsOpen(false);
+      setIsEdit(true);
+      return;
+    }
     sheetsRef.current.expand();
-    setIsOpen(false);
+    setIsOpen(true);
     setIsEdit(true);
   }
 
@@ -77,7 +86,7 @@ function Products() {
         icon="bag-handle"
       />
       <BannerList action={handlePress}>
-        {products?.map((item) => (
+        {store?.map((item) => (
           <CheckItem
             key={item.id}
             id={item.id}

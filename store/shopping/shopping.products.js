@@ -21,7 +21,7 @@ export const useShoppingProducts = create((set, get) => ({
       id: `product${Date.now()}`,
       name: get().inputProducts.text,
       supermarket: exist.name,
-      idSuperMarket: exist.id,
+      idSupermarket: exist.id,
       isbought: false,
     };
 
