@@ -64,9 +64,6 @@ export const useShoppingProducts = create((set, get) => ({
 
   getStore: (id) => {
     const supermarket = useShopping.getState().supermarket;
-    console.log("supermarket: ", supermarket);
-
-    console.log("id: ", id);
 
     const { name } = supermarket.find((item) => item.id === Number(id));
 

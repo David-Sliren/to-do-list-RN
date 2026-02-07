@@ -46,7 +46,6 @@ export const useShopping = create((set, get) => ({
 
   editSupermarket: (value) => {
     const valueFilter = get().supermarket.find((item) => item.id === value);
-    // console.log(valueFilter);
 
     set({ inputSupermarket: { text: valueFilter.name, id: valueFilter.id } });
   },
