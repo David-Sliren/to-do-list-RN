@@ -23,7 +23,7 @@ const Supermarket = ({ total, title = "", deleteItem, editItem, id }) => {
         onPress={() => router.push(`/shopping/${id}`)}
       >
         <Text style={tw`text-xl`}>{title}</Text>
-        <View style={tw`flex-row gap-2 items-center`}>
+        <View style={tw`flex-row items-center`}>
           {/* <Text style={tw`text-xl font-semibold`}>{total}</Text> */}
           <ButtonEdit action={editItem} />
           <ButtonDelete action={deleteItem} />

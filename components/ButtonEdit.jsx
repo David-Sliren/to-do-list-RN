@@ -13,11 +13,11 @@ const ButtonEdit = ({ action }) => {
       style={({ pressed }) => [
         tw`${
           pressed ? "opacity-80" : "opacity-100"
-        } bg-sky-500/80 justify-center items-center size-8 rounded-lg shadow-md`,
+        }  justify-center items-center size-8`,
       ]}
       onPress={action}
     >
-      <Ionicons name="pencil-outline" size={25} color="white" />
+      <Ionicons name="create-outline" size={25} color="black" />
     </Pressable>
   );
 };

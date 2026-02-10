@@ -11,13 +11,11 @@ const ButtonDelete = ({ action, fondo }) => {
   return (
     <Pressable
       style={({ pressed }) => [
-        tw`${pressed ? "opacity-80" : "opacity-100"} ${
-          fondo ? "bg-black" : "bg-red-500"
-        } justify-center items-center size-8 rounded-lg shadow-md`,
+        tw`${pressed ? "opacity-80" : "opacity-100"} justify-center items-center size-8`,
       ]}
       onPress={action}
     >
-      <Ionicons name="trash-outline" size={25} color="white" />
+      <Ionicons name="trash-outline" size={25} color="black" />
     </Pressable>
   );
 };
