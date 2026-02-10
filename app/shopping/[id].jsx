@@ -32,13 +32,13 @@ function Products() {
     filterStore,
     setIsOpen,
     setIsEdit,
-    Products,
     updateInput,
     addProducts,
     editProducts,
     handleChangeStatus,
     handleDeleteProduct,
     getStore,
+    checkProduct,
   } = useShopping_products();
 
   // name de store
@@ -47,35 +47,34 @@ function Products() {
   const store = filterStore(id);
 
   function handlePress() {
-    if (isOpen) {
-      sheetsRef.current.close();
-      setIsOpen(false);
-      return;
+    if (!isOpen) {
+      updateInput("");
+      sheetsRef.current.expand();
+      setIsOpen(true);
+      setIsEdit(false);
     }
-
-    updateInput("");
-    setIsEdit(false);
-    sheetsRef.current.expand();
-    setIsOpen(true);
   }
 
   function handleAddProduts(value) {
     addProducts(value);
     sheetsRef.current.close();
-    setIsOpen(true);
+    setIsOpen(false);
+  }
+
+  function handleCheckProduts(value) {
+    if (!isOpen) {
+      checkProduct(value);
+      sheetsRef.current.expand();
+      setIsOpen(true);
+      setIsEdit(true);
+    }
   }
 
   function handleEditProduts(value) {
     editProducts(value);
-    if (isOpen) {
-      sheetsRef.current.close();
-      setIsOpen(false);
-      setIsEdit(true);
-      return;
-    }
-    sheetsRef.current.expand();
-    setIsOpen(true);
-    setIsEdit(true);
+    sheetsRef.current.close();
+    setIsOpen(false);
+    setIsEdit(false);
   }
 
   return (
@@ -94,13 +93,13 @@ function Products() {
             bought={item.isbought}
             deleteItem={() => handleDeleteProduct(item.id)}
             changeStatus={() => handleChangeStatus(item.id)}
-            editItem={() => handleEditProduts(item.id)}
+            editItem={() => handleCheckProduts(item.id)}
           />
         ))}
       </BannerList>
       <ModalSeccion
         ref={sheetsRef}
-        action={setIsOpen}
+        action={() => setIsOpen(false)}
         title={isEdit ? "Editar" : "Producto"}
         size="66%"
       >
@@ -114,7 +113,7 @@ function Products() {
 
         <Pressable
           onPress={() =>
-            !isEdit ? handleAddProduts(id) : handleEditProduts(idProduct)
+            isEdit ? handleEditProduts(idProduct) : handleAddProduts(id)
           }
         >
           <Text>Agregar</Text>

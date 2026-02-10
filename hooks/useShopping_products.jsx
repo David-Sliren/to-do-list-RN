@@ -12,6 +12,7 @@ function useShopping_products() {
   );
   const updateInput = useShoppingProducts((state) => state.updateInput);
   const addProducts = useShoppingProducts((state) => state.addProducts);
+  const checkProduct = useShoppingProducts((state) => state.checkProduct);
   const editProducts = useShoppingProducts((state) => state.editProducts);
   const updateProducts = useShoppingProducts((state) => state.updateProduts);
   const deleteProducts = useShoppingProducts((state) => state.deleteProducts);
@@ -41,6 +42,7 @@ function useShopping_products() {
     updateInput,
     addProducts,
     editProducts,
+    checkProduct,
     getStore,
 
     // Handles

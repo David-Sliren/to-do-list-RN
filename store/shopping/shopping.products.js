@@ -43,23 +43,29 @@ export const useShoppingProducts = create((set, get) => ({
       products: state.products?.filter((item) => item.id !== id),
     })),
 
-  editProducts: (id) => {
-    const { products, inputProducts } = get();
+  checkProduct: (id) => {
+    const { products } = get();
 
     const exist = products.find((item) => item.id === id);
 
-    if (!exist) return;
+    set({
+      inputProducts: {
+        text: exist ? exist.name : "",
+        idProduct: exist ? exist.id : 0,
+      },
+    });
+  },
 
-    if (inputProducts.text.trim() === "") {
-      set({ inputProducts: { text: exist.name, idProduct: exist.id } });
-      return;
-    }
+  editProducts: (id) => {
+    const { products, inputProducts } = get();
 
-    const newProducts = get().products?.map((item) =>
-      item.id === exist.id ? { ...item, name: inputProducts.text } : item,
+    const newProducts = products.map((item) =>
+      item.id === id && inputProducts.text.trim() !== ""
+        ? { ...item, name: inputProducts.text }
+        : item,
     );
 
-    set({ products: newProducts });
+    set({ products: newProducts, inputProducts: { text: "", id: 0 } });
   },
 
   getStore: (id) => {
