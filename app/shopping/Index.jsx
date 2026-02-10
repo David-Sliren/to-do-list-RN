@@ -61,7 +61,7 @@ const Index = () => {
       <View style={tw``}>
         <BannerTitle
           title="Compras"
-          subTitle="Tu lista de supermercado"
+          subTitle="Tu lista de supermercados"
           icon="cart"
         />
       </View>
@@ -87,7 +87,7 @@ const Index = () => {
           placeholderInput={isEdit ? "Editar nombre" : "Agregar supermercado"}
           value={text}
           action={updateInputSupermarket}
-          maxCharater={18}
+          maxCharater={14}
         />
 
         <Pressable onPress={handleNewSupermarket}>
