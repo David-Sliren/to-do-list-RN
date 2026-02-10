@@ -21,6 +21,9 @@ function useShopping_products() {
   const filterStore = (id) =>
     products.filter((items) => items.idSupermarket === Number(id));
 
+  const cartStore = (id) =>
+    filterStore(id).filter((items) => items.isbought === true);
+
   function handleChangeStatus(id) {
     updateProducts(id);
   }
@@ -35,6 +38,7 @@ function useShopping_products() {
     text,
     idProduct,
     filterStore,
+    cartStore,
 
     // metodos
     setIsOpen,

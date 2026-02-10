@@ -13,10 +13,12 @@ import BannerTitle from "../../components/BannerTitle";
 import BannerList from "../../components/BannerList";
 import CheckItem from "../../components/CheckItem";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import InputAdd from "../../components/InputAdd";
 import { Pressable, Text } from "react-native";
 import useShopping_products from "../../hooks/useShopping_products";
+import ModalCart from "../../components/Modals_types/ModalCart";
+import ItemBought from "../../components/ItemBought";
 
 function Products() {
   // estados
@@ -39,12 +41,16 @@ function Products() {
     handleDeleteProduct,
     getStore,
     checkProduct,
+    cartStore,
   } = useShopping_products();
+
+  const [isOpenCart, setIsOpenCart] = useState(false);
 
   // name de store
   const name = getStore(id);
 
   const store = filterStore(id);
+  const cart = cartStore(id);
 
   function handlePress() {
     if (!isOpen) {
@@ -83,6 +89,7 @@ function Products() {
         title={name}
         subTitle={`Tus compras en ${name}`}
         icon="bag-handle"
+        iconAction={() => setIsOpenCart(!isOpenCart)}
       />
       <BannerList action={handlePress}>
         {store?.map((item) => (
@@ -119,6 +126,24 @@ function Products() {
           <Text>Agregar</Text>
         </Pressable>
       </ModalSeccion>
+      <ModalCart
+        title="Bolsa"
+        subTitle={`Compras en ${name}`}
+        total={cart.length}
+        changeBoolean={isOpenCart}
+        backAction={() => setIsOpenCart(false)}
+        cartClose={() => setIsOpenCart(false)}
+      >
+        {cart.map((item) => (
+          <ItemBought
+            key={item.id}
+            title={item.name}
+            subTitle={item.supermarket}
+            deleteItem={() => handleChangeStatus(item.id)}
+            bought={item.isbought}
+          />
+        ))}
+      </ModalCart>
     </ShoppingScreen>
   );
 }
