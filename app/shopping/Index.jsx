@@ -16,7 +16,8 @@ import BannerTitle from "../../components/BannerTitle";
 import BannerList from "../../components/BannerList";
 import useShopping_index from "../../hooks/useShopping_index";
 import ModalCart from "../../components/Modals_types/ModalCart";
-import CheckItem from "../../components/CheckItem";
+// import CheckItem from "../../components/CheckItem";
+import ItemBought from "../../components/ItemBought";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -32,6 +33,7 @@ const Index = () => {
     setSupermarket,
     editSupermarket,
     allProductsBought,
+    updateProduts,
   } = useShopping_index();
 
   const [isOpenCart, setIsOpenCart] = useState(false);
@@ -109,7 +111,13 @@ const Index = () => {
         cartClose={() => setIsOpenCart(false)}
       >
         {allProductsBought.map((item) => (
-          <CheckItem key={item.id} title={item.name} bought={item.isbought} />
+          <ItemBought
+            key={item.id}
+            title={item.name}
+            subTitle={item.supermarket}
+            bought={item.isbought}
+            deleteItem={() => updateProduts(item.id)}
+          />
         ))}
       </ModalCart>
     </ShoppingScreen>

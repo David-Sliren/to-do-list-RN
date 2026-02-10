@@ -17,6 +17,7 @@ function useShopping_index() {
   const deleteSupermarket = useShopping((state) => state.deleteSupermarket);
   const editSupermarket = useShopping((state) => state.editSupermarket);
   const products = useShoppingProducts((state) => state.products);
+  const updateProduts = useShoppingProducts((state) => state.updateProduts);
   const allProductsBought = products.filter((item) => item.isbought === true);
 
   return {
@@ -33,6 +34,7 @@ function useShopping_index() {
     deleteSupermarket,
     editSupermarket,
     allProductsBought,
+    updateProduts,
   };
 }
 
