@@ -5,11 +5,12 @@ import { View, Text, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 // Moti
-import { MotiView, AnimatePresence } from "moti";
+import { MotiView } from "moti";
 
 // Librerias
 import tw from "twrnc";
 import { useState } from "react";
+import ButtonsDeleteEdit from "./ButtonsDeleteEdit";
 
 const CheckItem = ({
   title = "",
@@ -18,11 +19,11 @@ const CheckItem = ({
   editItem,
   changeStatus,
 }) => {
-  const [aviable, setAviable] = useState(false);
+  const [isAviable, setIsAviable] = useState(false);
 
   const handleHidden = () => {
     editItem();
-    setAviable(false);
+    setIsAviable(false);
   };
 
   return (
@@ -44,36 +45,18 @@ const CheckItem = ({
         </View>
         <Text style={tw`text-lg`}>{title}</Text>
       </View>
-      <Pressable onPress={() => setAviable(!aviable)}>
-        {!aviable ? (
+      <Pressable onPress={() => setIsAviable(!isAviable)}>
+        {!isAviable ? (
           <Ionicons name="menu-outline" style={tw`text-4xl`} />
         ) : (
           <Ionicons name="close-circle-outline" style={tw`text-4xl`} />
         )}
       </Pressable>
-
-      <AnimatePresence>
-        <MotiView
-          animate={{ translateY: aviable ? 0 : -80 }}
-          transition={{ type: "spring" }}
-          style={tw`absolute left-0 flex-row flex-1 h-full w-[90%] bg-blue-200 rounded-lg overflow-hidden`}
-        >
-          <Pressable
-            onPress={handleHidden}
-            style={tw`bg-black/90 flex-row flex-1 justify-center items-center border border-r-sky-200`}
-          >
-            <Ionicons name="create-outline" style={tw`text-3xl text-white`} />
-            <Text style={tw`text-xl text-white`}>Editar</Text>
-          </Pressable>
-          <Pressable
-            onPress={deleteItem}
-            style={tw`bg-black/90 flex-row flex-1 justify-center items-center`}
-          >
-            <Ionicons name="close-outline" style={tw`text-3xl text-white`} />
-            <Text style={tw`text-xl text-white`}> Eliminar</Text>
-          </Pressable>
-        </MotiView>
-      </AnimatePresence>
+      <ButtonsDeleteEdit
+        btnEdit={handleHidden}
+        btnDelete={deleteItem}
+        changeBoolean={isAviable}
+      />
     </Pressable>
   );
 };
