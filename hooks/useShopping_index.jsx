@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useShopping } from "../store/shopping/shopping.store";
+import { useShoppingProducts } from "../store/shopping/shopping.products";
 
 function useShopping_index() {
   const [addSection, setAddSection] = useState(false);
@@ -15,6 +16,8 @@ function useShopping_index() {
   const setSupermarket = useShopping((state) => state.setSupermarket);
   const deleteSupermarket = useShopping((state) => state.deleteSupermarket);
   const editSupermarket = useShopping((state) => state.editSupermarket);
+  const products = useShoppingProducts((state) => state.products);
+  const allProductsBought = products.filter((item) => item.isbought === true);
 
   return {
     text,
@@ -29,6 +32,7 @@ function useShopping_index() {
     updateInputSupermarket,
     deleteSupermarket,
     editSupermarket,
+    allProductsBought,
   };
 }
 

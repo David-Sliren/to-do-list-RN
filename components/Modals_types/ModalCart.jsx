@@ -7,7 +7,7 @@ import { View } from "react-native";
 import tw from "twrnc";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import BannerTitle from "../BannerTitle";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const ModalCart = ({
   children,
@@ -16,23 +16,28 @@ const ModalCart = ({
   total,
   backAction,
   changeBoolean,
+  cartClose,
 }) => {
   const sheet = useRef(null);
-  // function handleExpandModal() {
-  //   if (changeBoolean) {
-  //     sheet.current.close();
-  //     setIsOpen(false);
-  //   }
-  //   sheet.current.expand();
-  //   setIsOpen(true);
-  // }
+
+  useEffect(() => {
+    if (changeBoolean) {
+      sheet.current.expand();
+    } else {
+      sheet.current.close();
+    }
+  }, [changeBoolean]);
 
   return (
     <BottomSheet
       ref={sheet}
+      index={-1}
+      onClose={cartClose}
+      maxDynamicContentSize={[760]}
+      // enableDynamicSizing={true}
+      enablePanDownToClose={true}
+      snapPoints={["80%"]}
       backgroundStyle={tw`bg-transparent`}
-      maxDynamicContentSize={760}
-      enableDynamicSizing={true}
       style={tw`bg-white rounded-t-3xl`}
     >
       <View>
@@ -40,7 +45,7 @@ const ModalCart = ({
           title={title}
           subTitle={`${subTitle} ${total}`}
           icon="arrow-undo"
-          action={backAction}
+          iconAction={backAction}
         />
       </View>
 

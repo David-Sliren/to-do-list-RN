@@ -1,5 +1,5 @@
 // React
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // RN
 import { View, Text, Pressable } from "react-native";
@@ -15,6 +15,8 @@ import ShoppingScreen from "../../components/screens/ShoppingScreen";
 import BannerTitle from "../../components/BannerTitle";
 import BannerList from "../../components/BannerList";
 import useShopping_index from "../../hooks/useShopping_index";
+import ModalCart from "../../components/Modals_types/ModalCart";
+import CheckItem from "../../components/CheckItem";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -29,7 +31,10 @@ const Index = () => {
     updateInputSupermarket,
     setSupermarket,
     editSupermarket,
+    allProductsBought,
   } = useShopping_index();
+
+  const [isOpenCart, setIsOpenCart] = useState(false);
 
   function handlePress() {
     if (addSection) {
@@ -63,6 +68,7 @@ const Index = () => {
           title="Compras"
           subTitle="Tu lista de supermercados"
           icon="cart"
+          iconAction={() => setIsOpenCart(!isOpenCart)}
         />
       </View>
       <BannerList action={handlePress}>
@@ -94,6 +100,18 @@ const Index = () => {
           <Text>Agregar</Text>
         </Pressable>
       </ModalSeccion>
+      <ModalCart
+        title="Carrito"
+        subTitle="tus compras"
+        total={allProductsBought.length}
+        changeBoolean={isOpenCart}
+        backAction={() => setIsOpenCart(false)}
+        cartClose={() => setIsOpenCart(false)}
+      >
+        {allProductsBought.map((item) => (
+          <CheckItem key={item.id} title={item.name} bought={item.isbought} />
+        ))}
+      </ModalCart>
     </ShoppingScreen>
   );
 };
