@@ -14,6 +14,7 @@ const BannerTitle = ({
   icon = "",
   colorIcon = "",
   iconAction,
+  notifitions = false,
 }) => {
   return (
     <View style={tw`flex-row justify-between items-center pt-8 pb-8 px-6`}>
@@ -34,7 +35,14 @@ const BannerTitle = ({
           {subTitle}
         </Text>
       </View>
-      <Pressable onPress={iconAction}>
+      <Pressable style={tw`relative`} onPress={iconAction}>
+        {notifitions && (
+          <View
+            style={tw`absolute -left-1 -top-2 justify-center items-center bg-black rounded-full ${notifitions < 99 ? "size-5" : "w-fit px-1"}`}
+          >
+            <Text style={tw`text-sm text-white`}>{notifitions}</Text>
+          </View>
+        )}
         <BlurView
           intensity={20}
           tint="dark"

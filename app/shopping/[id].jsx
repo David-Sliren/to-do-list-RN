@@ -90,6 +90,7 @@ function Products() {
         subTitle={`Tus compras en ${name}`}
         icon="bag-handle"
         iconAction={() => setIsOpenCart(!isOpenCart)}
+        notifitions={cart.length ? cart.length : false}
       />
       <BannerList action={handlePress}>
         {store?.map((item) => (

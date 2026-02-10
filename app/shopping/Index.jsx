@@ -71,6 +71,9 @@ const Index = () => {
           subTitle="Tu lista de supermercados"
           icon="cart"
           iconAction={() => setIsOpenCart(!isOpenCart)}
+          notifitions={
+            allProductsBought.length ? allProductsBought.length : false
+          }
         />
       </View>
       <BannerList action={handlePress}>
