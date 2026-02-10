@@ -34,18 +34,18 @@ const BannerTitle = ({
           {subTitle}
         </Text>
       </View>
-      <BlurView
-        intensity={20}
-        tint="dark"
-        style={tw`size-14 justify-center items-center border-black/20 border rounded-2xl overflow-hidden`}
-      >
-        <Pressable onPress={iconAction}>
+      <Pressable onPress={iconAction}>
+        <BlurView
+          intensity={20}
+          tint="dark"
+          style={tw`size-14 justify-center items-center border-black/20 border rounded-2xl overflow-hidden`}
+        >
           <Ionicons
             name={icon}
             style={[tw`text-3xl text-black/80`, { color: colorIcon }]}
           />
-        </Pressable>
-      </BlurView>
+        </BlurView>
+      </Pressable>
     </View>
   );
 };
