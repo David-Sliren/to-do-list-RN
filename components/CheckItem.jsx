@@ -35,7 +35,7 @@ const CheckItem = ({
     >
       <View style={tw`flex-row items-center gap-2`}>
         <View
-          style={tw`border border-black size-5 rounded-full overflow-hidden`}
+          style={tw`border border-black size-4 rounded-full overflow-hidden`}
         >
           <MotiView
             style={tw`bg-black size-full rounded-full`}
@@ -43,13 +43,13 @@ const CheckItem = ({
             transition={{ type: "spring", duration: 200 }}
           />
         </View>
-        <Text style={tw`text-lg`}>{title}</Text>
+        <Text style={tw`text-xl`}>{title}</Text>
       </View>
       <Pressable onPress={() => setIsAviable(!isAviable)}>
         {!isAviable ? (
-          <Ionicons name="menu-outline" style={tw`text-4xl`} />
+          <Ionicons name="ellipsis-horizontal" style={tw`text-4xl scale-80`} />
         ) : (
-          <Ionicons name="close-circle-outline" style={tw`text-4xl`} />
+          <Ionicons name="close-circle-outline" style={tw`text-4xl scale-95`} />
         )}
       </Pressable>
       <ButtonsDeleteEdit
