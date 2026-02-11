@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 
 // RN
-import { View, Text, Pressable } from "react-native";
+import { View } from "react-native";
 
 // Librerias
 import tw from "twrnc";

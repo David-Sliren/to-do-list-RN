@@ -15,10 +15,10 @@ import CheckItem from "../../components/CheckItem";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import { useRef, useState } from "react";
 import InputAdd from "../../components/InputAdd";
-import { Pressable, Text } from "react-native";
 import useShopping_products from "../../hooks/useShopping_products";
 import ModalCart from "../../components/Modals_types/ModalCart";
 import ItemBought from "../../components/ItemBought";
+import ButtonAddTask from "../../components/ButtonAddTask";
 
 function Products() {
   // estados
@@ -119,13 +119,11 @@ function Products() {
           maxCharater={32}
         />
 
-        <Pressable
-          onPress={() =>
+        <ButtonAddTask
+          action={() =>
             isEdit ? handleEditProduts(idProduct) : handleAddProduts(id)
           }
-        >
-          <Text>Agregar</Text>
-        </Pressable>
+        />
       </ModalSeccion>
       <ModalCart
         title="Bolsa"
