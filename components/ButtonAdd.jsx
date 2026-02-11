@@ -12,12 +12,9 @@ const ButtonAdd = ({ action }) => {
   return (
     <Pressable
       onPress={() => action()}
-      style={[
-        tw`absolute bottom-20 right-4 justify-center items-center size-15 rounded-full z-1`,
-        { backgroundColor: colorBody.aqua },
-      ]}
+      style={tw`absolute bottom-20 right-4 bg-black/85 justify-center items-center size-15 rounded-full z-1`}
     >
-      <Ionicons name="add" style={tw`text-2xl text-black`} />
+      <Ionicons name="add" style={[tw`text-2xl`, { color: colorBody.aqua }]} />
     </Pressable>
   );
 };

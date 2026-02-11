@@ -18,6 +18,7 @@ import useShopping_index from "../../hooks/useShopping_index";
 import ModalCart from "../../components/Modals_types/ModalCart";
 // import CheckItem from "../../components/CheckItem";
 import ItemBought from "../../components/ItemBought";
+import ButtonAddTask from "../../components/ButtonAddTask";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -101,9 +102,7 @@ const Index = () => {
           maxCharater={14}
         />
 
-        <Pressable onPress={handleNewSupermarket}>
-          <Text>Agregar</Text>
-        </Pressable>
+        <ButtonAddTask action={handleNewSupermarket} />
       </ModalSeccion>
       <ModalCart
         title="Carrito"
