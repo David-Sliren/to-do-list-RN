@@ -8,7 +8,7 @@ export const useShopping = create((set, get) => ({
   updateInputSupermarket: (value) =>
     set((state) => ({
       inputSupermarket: {
-        text: value.toLowerCase(),
+        text: value,
         id: state.inputSupermarket.id,
       },
     })),
