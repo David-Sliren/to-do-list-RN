@@ -1,4 +1,4 @@
 export const colorBody = {
   aqua: "#befaff",
-  transparent: "transparent",
+  transparent: "#ffffff80",
 };

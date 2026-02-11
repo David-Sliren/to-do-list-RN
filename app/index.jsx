@@ -13,39 +13,35 @@ import { colorBody } from "../constants/colorsPrincipals";
 
 // Componentes
 import Activity from "../components/Activity";
-import AddActivity from "../components/AddActivity";
 
 const Index = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={tw` flex-1 items-center overflow-hidden bg-zinc-200/45`}>
-        <LinearGradient
-          colors={[colorBody.transparent, colorBody.aqua]}
-          locations={[0.8, 1]}
-          start={{ x: 0.5, y: 1 }}
-          end={{ x: 0.5, y: 0 }}
-          style={[tw`flex-1`, StyleSheet.absoluteFill]}
-        />
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorBody.aqua }}>
+      <LinearGradient
+        colors={[colorBody.transparent, colorBody.aqua]}
+        locations={[0, 1]}
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0, y: 0.5 }}
+        style={StyleSheet.absoluteFill}
+      />
 
-        <View style={tw`mb-10 mt-25 items-center gap-8.9 `}>
-          <Text
-            style={[
-              tw`text-sky-500 text-5xl font-extrabold`,
-              {
-                textShadowColor: "rgba(0,0,0,0.6)",
-                textShadowOffset: { width: 2, height: -2 },
-                textShadowRadius: 4,
-              },
-            ]}
-          >
-            RENPETAIN
-          </Text>
-        </View>
-        <View style={tw` flex-row flex-wrap  gap-2 w-full justify-center p-2`}>
-          <Activity title="Tareas diarias" icon="medical" />
-          <Activity title="Compras" icon="cart" route="/shopping" />
-          <AddActivity />
-        </View>
+      <View style={tw`items-center gap-8.9 mt-20 `}>
+        <Text
+          style={[
+            tw`text-sky-200 text-6xl font-bold`,
+            {
+              textShadowColor: "rgba(0,0,0,0.5)",
+              textShadowOffset: { width: -1, height: 0 },
+              textShadowRadius: 6,
+            },
+          ]}
+        >
+          RENPENTAIN
+        </Text>
+      </View>
+      <View style={tw`gap-2 w-full justify-center items-center p-2 mt-15`}>
+        <Activity title="Tareas diarias" icon="flash-outline" />
+        <Activity title="Compras" icon="cart-outline" route="/shopping" />
       </View>
     </SafeAreaView>
   );
