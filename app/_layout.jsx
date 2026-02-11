@@ -13,6 +13,7 @@ export default function _layout() {
         <TasksContext>
           <Stack
             screenOptions={{
+              animation: "slide_from_left",
               headerShown: false,
             }}
           />
