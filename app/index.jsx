@@ -40,7 +40,11 @@ const Index = () => {
         </Text>
       </View>
       <View style={tw`gap-2 w-full justify-center items-center p-2 mt-15`}>
-        <Activity title="Tareas diarias" icon="flash-outline" />
+        <Activity
+          title="Tareas diarias"
+          icon="flash-outline"
+          route="/flashTask"
+        />
         <Activity title="Compras" icon="cart-outline" route="/shopping" />
       </View>
     </SafeAreaView>
