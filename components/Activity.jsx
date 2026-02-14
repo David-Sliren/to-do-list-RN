@@ -1,24 +1,27 @@
-import { Text, Pressable } from "react-native";
+import { Text, Pressable, Image, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import tw from "twrnc";
 import { useRouter } from "expo-router";
 import { BlurView } from "expo-blur";
-const Activity = ({ title = "", icon = "", route = "" }) => {
+const Activity = ({ title = "", icon = "", route = "", image = "" }) => {
   const router = useRouter();
 
   return (
-    <BlurView
-      intensity={20}
-      tint="dark"
-      style={tw` border border-black/20 h-48 w-full rounded-xl overflow-hidden`}
+    <View
+      // intensity={20}
+      // tint="dark"
+      style={tw` bg-sky-400 border border-black/20 h-48 w-full shadow-lg rounded-xl overflow-hidden`}
     >
       <Pressable style={tw`size-full`} onPress={() => router.push(route)}>
-        <Text style={tw` p-2 text-zinc-800 text-2xl font-semibold  `}>
-          {title}
-        </Text>
-        <Ionicons style={tw`m-auto text-8xl text-zinc-800`} name={icon} />
+        <View style={tw`flex-row items-center`}>
+          <Text style={tw` p-2 text-neutral-100 text-2xl font-semibold  `}>
+            {title}
+          </Text>
+          <Ionicons name={icon} size={25} style={tw`text-neutral-100`} />
+        </View>
+        <Image source={image} style={tw`size-40 mx-auto -translate-y-5`} />
       </Pressable>
-    </BlurView>
+    </View>
   );
 };
 
