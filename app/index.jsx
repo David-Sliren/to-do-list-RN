@@ -14,7 +14,12 @@ import { colorBody } from "../constants/colorsPrincipals";
 // Componentes
 import Activity from "../components/Activity";
 
+// estate global
+import useShopping_index from "../hooks/useShopping_index";
+
 const Index = () => {
+  const { flashShopping } = useShopping_index();
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colorBody.aqua }}>
       <LinearGradient
@@ -46,7 +51,7 @@ const Index = () => {
         <Activity
           title="Rapidas"
           icon="flash-outline"
-          route="/flashTask"
+          route={`/shopping/${flashShopping}`}
           image={require("../assets/images/Cesto-3d.png")}
         />
         <Activity

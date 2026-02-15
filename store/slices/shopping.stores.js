@@ -1,0 +1,67 @@
+export const useShoppingStores = (set, get) => ({
+  inputSupermarket: { text: "", id: 0 },
+  supermarket: [
+    {
+      id: Date.now(),
+      name: "Compras rapidas",
+    },
+  ],
+  stores_actions: {
+    // Supermercado
+    updateInputSupermarket: (value) =>
+      set((state) => ({
+        inputSupermarket: {
+          text: value,
+          id: state.inputSupermarket.id,
+        },
+      })),
+
+    addSupermarket: () => {
+      if (get().inputSupermarket.text.trim() === "") return;
+
+      const idtask =
+        get().inputSupermarket?.id !== 0
+          ? get().inputSupermarket?.id
+          : Date.now();
+
+      const exist = get().supermarket.some((item) => item.id === idtask);
+
+      set((state) => {
+        const addSupermarkets = exist
+          ? state.supermarket.map((item) =>
+              item.id === idtask
+                ? { ...item, name: state.inputSupermarket.text.toUpperCase() }
+                : item,
+            )
+          : [
+              ...get().supermarket,
+              {
+                id: Date.now(),
+                name: get().inputSupermarket.text.toUpperCase(),
+              },
+            ];
+
+        return {
+          supermarket: addSupermarkets,
+          inputSupermarket: { text: "", id: 0 },
+        };
+      });
+    },
+
+    editSupermarket: (value) => {
+      const valueFilter = get().supermarket.find((item) => item.id === value);
+
+      set({ inputSupermarket: { text: valueFilter.name, id: valueFilter.id } });
+    },
+
+    deleteSupermarket: (value) => {
+      const valueFilter = get()?.supermarket?.filter(
+        (item) => item.id !== value,
+      );
+
+      set({ supermarket: valueFilter });
+    },
+
+    resetSupermarket: () => set({ supermarket: [] }),
+  },
+});

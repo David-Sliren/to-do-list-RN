@@ -1,36 +1,36 @@
 import { useState } from "react";
-import { useShoppingProducts } from "../store/shopping/shopping.products";
-
+import { useShoppingCombine } from "../store/shopping/shopping";
 function useShopping_products() {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
   // Estado global produtos
-  const products = useShoppingProducts((state) => state.products);
-  const { text, idProduct } = useShoppingProducts(
+  const { text, idProduct } = useShoppingCombine(
     (state) => state.inputProducts,
   );
-  const updateInput = useShoppingProducts((state) => state.updateInput);
-  const addProducts = useShoppingProducts((state) => state.addProducts);
-  const checkProduct = useShoppingProducts((state) => state.checkProduct);
-  const editProducts = useShoppingProducts((state) => state.editProducts);
-  const updateProducts = useShoppingProducts((state) => state.updateProduts);
-  const deleteProducts = useShoppingProducts((state) => state.deleteProducts);
-  const getStore = useShoppingProducts((state) => state.getStore);
+  const products = useShoppingCombine((state) => state.products);
+
+  const {
+    updateInput,
+    addProducts,
+    checkProduct,
+    editProducts,
+    deleteProducts,
+    getStore,
+    updateProducts,
+  } = useShoppingCombine((state) => state.products_actions);
 
   const filterStore = (id) =>
-    products.filter((items) => items.idSupermarket === Number(id));
+    products
+      ? products.filter((items) => items.idSupermarket === Number(id))
+      : [];
 
   const cartStore = (id) =>
     filterStore(id).filter((items) => items.isbought === true);
 
-  function handleChangeStatus(id) {
-    updateProducts(id);
-  }
+  const handleChangeStatus = (id) => updateProducts(id);
 
-  function handleDeleteProduct(id) {
-    deleteProducts(id);
-  }
+  const handleDeleteProduct = (id) => deleteProducts(id);
 
   return {
     isOpen,

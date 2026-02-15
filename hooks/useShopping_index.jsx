@@ -1,35 +1,45 @@
 import { useState } from "react";
-import { useShopping } from "../store/shopping/shopping.store";
-import { useShoppingProducts } from "../store/shopping/shopping.products";
+import { useShoppingCombine } from "../store/shopping/shopping";
+import { useShallow } from "zustand/react/shallow";
 
 function useShopping_index() {
   const [addSection, setAddSection] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
   // Estado global supermercado
-  const supermarket = useShopping((state) => state.supermarket);
-
-  const { text } = useShopping((state) => state.inputSupermarket);
-  const updateInputSupermarket = useShopping(
-    (state) => state.updateInputSupermarket,
+  const supermarket = useShoppingCombine(
+    useShallow((state) => state.supermarket.slice(1)),
   );
-  const setSupermarket = useShopping((state) => state.setSupermarket);
-  const deleteSupermarket = useShopping((state) => state.deleteSupermarket);
-  const editSupermarket = useShopping((state) => state.editSupermarket);
-  const products = useShoppingProducts((state) => state.products);
-  const updateProduts = useShoppingProducts((state) => state.updateProduts);
-  const allProductsBought = products.filter((item) => item.isbought === true);
+  const flashShopping = useShoppingCombine((state) => state.supermarket[0].id);
+  const allProductsBought = useShoppingCombine(
+    useShallow((state) =>
+      state.products.filter(
+        (item) =>
+          item.isbought === true && item.idSupermarket !== flashShopping,
+      ),
+    ),
+  );
+  const { text } = useShoppingCombine((state) => state.inputSupermarket);
+
+  const {
+    updateInputSupermarket,
+    addSupermarket,
+    deleteSupermarket,
+    editSupermarket,
+    updateProduts,
+  } = useShoppingCombine((state) => state.stores_actions);
 
   return {
     text,
     isEdit,
     supermarket,
     addSection,
+    flashShopping,
 
     // metodos
     setIsEdit,
     setAddSection,
-    setSupermarket,
+    addSupermarket,
     updateInputSupermarket,
     deleteSupermarket,
     editSupermarket,

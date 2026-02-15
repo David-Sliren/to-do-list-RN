@@ -31,7 +31,7 @@ const Index = () => {
     setAddSection,
     deleteSupermarket,
     updateInputSupermarket,
-    setSupermarket,
+    addSupermarket,
     editSupermarket,
     allProductsBought,
     updateProduts,
@@ -52,7 +52,7 @@ const Index = () => {
   }
 
   function handleNewSupermarket() {
-    setSupermarket();
+    addSupermarket();
     sheetsRef.current?.close();
     setAddSection(true);
   }

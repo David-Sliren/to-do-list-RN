@@ -15,10 +15,12 @@ import CheckItem from "../../components/CheckItem";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import { useRef, useState } from "react";
 import InputAdd from "../../components/InputAdd";
-import useShopping_products from "../../hooks/useShopping_products";
 import ModalCart from "../../components/Modals_types/ModalCart";
 import ItemBought from "../../components/ItemBought";
 import ButtonAddTask from "../../components/ButtonAddTask";
+
+// Estados globales
+import useShopping_products from "../../hooks/useShopping_products";
 
 function Products() {
   // estados
@@ -87,7 +89,11 @@ function Products() {
     <ShoppingScreen>
       <BannerTitle
         title={name}
-        subTitle={`Tus compras en ${name}`}
+        subTitle={
+          name === "Compras rapidas"
+            ? `Tu lista de ${name}`
+            : `Tus compras en ${name}`
+        }
         icon="bag-handle"
         iconAction={() => setIsOpenCart(!isOpenCart)}
         notifitions={cart.length ? cart.length : false}
