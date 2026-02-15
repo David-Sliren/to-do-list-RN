@@ -34,7 +34,7 @@ const Index = () => {
     addSupermarket,
     editSupermarket,
     allProductsBought,
-    updateProduts,
+    updateProducts,
   } = useShopping_index();
 
   const [isOpenCart, setIsOpenCart] = useState(false);
@@ -118,7 +118,7 @@ const Index = () => {
             title={item.name}
             subTitle={item.supermarket}
             bought={item.isbought}
-            deleteItem={() => updateProduts(item.id)}
+            deleteItem={() => updateProducts(item.id)}
           />
         ))}
       </ModalCart>

@@ -20,13 +20,15 @@ function useShopping_index() {
     ),
   );
   const { text } = useShoppingCombine((state) => state.inputSupermarket);
+  const { updateProducts } = useShoppingCombine(
+    (state) => state.products_actions,
+  );
 
   const {
     updateInputSupermarket,
     addSupermarket,
     deleteSupermarket,
     editSupermarket,
-    updateProduts,
   } = useShoppingCombine((state) => state.stores_actions);
 
   return {
@@ -44,7 +46,7 @@ function useShopping_index() {
     deleteSupermarket,
     editSupermarket,
     allProductsBought,
-    updateProduts,
+    updateProducts,
   };
 }
 
