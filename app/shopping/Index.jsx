@@ -68,7 +68,7 @@ const Index = () => {
     <ShoppingScreen>
       <View style={tw``}>
         <BannerTitle
-          title="Compras"
+          title="Mercado"
           subTitle="Tu lista de supermercados"
           icon="cart"
           iconAction={() => setIsOpenCart(!isOpenCart)}
@@ -91,14 +91,14 @@ const Index = () => {
       <ModalSeccion
         ref={sheetsRef}
         action={() => setAddSection(false)}
-        title={isEdit ? "Editar" : "Supermercado"}
+        title={isEdit ? "Editar" : "Supermercados"}
         size="66%"
         isOpen={addSection}
       >
         <InputAdd
           label="Nombre"
           placeholderInput={
-            isEdit ? "Editar nombre" : "Nombre del supermercado"
+            isEdit ? "Editar nombre" : "Escribe un supermercado"
           }
           value={text}
           action={updateInputSupermarket}

@@ -55,7 +55,7 @@ const Index = () => {
           image={require("../assets/images/Cesto-3d.png")}
         />
         <Activity
-          title="Tiendas"
+          title="Mercado"
           icon="cart-outline"
           route="/shopping"
           image={require("../assets/images/Carrito-3d.png")}

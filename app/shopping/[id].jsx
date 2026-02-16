@@ -114,13 +114,13 @@ function Products() {
       <ModalSeccion
         ref={sheetsRef}
         action={() => setIsOpen(false)}
-        title={isEdit ? "Editar" : "Producto"}
+        title={isEdit ? "Editar" : "Productos"}
         size="66%"
         isOpen={isOpen}
       >
         <InputAdd
           label="Nombre"
-          placeholderInput={isEdit ? "Editar producto" : "Nombre del producto"}
+          placeholderInput={isEdit ? "Editar producto" : "Escribe un producto"}
           value={text}
           action={updateInput}
           maxCharater={32}
