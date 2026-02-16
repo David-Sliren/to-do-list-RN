@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useShoppingCombine } from "../store/shopping/shopping";
 import { useShallow } from "zustand/react/shallow";
 
@@ -20,9 +20,15 @@ function useShopping_index() {
     ),
   );
   const { text } = useShoppingCombine((state) => state.inputSupermarket);
-  const { updateProducts } = useShoppingCombine(
+  const { updateProducts, clearProducts } = useShoppingCombine(
     (state) => state.products_actions,
   );
+
+  useEffect(() => {
+    if (!supermarket.length && allProductsBought.length) {
+      clearProducts();
+    }
+  }, [supermarket, clearProducts, allProductsBought]);
 
   const {
     updateInputSupermarket,

@@ -75,5 +75,7 @@ export const useShoppingProducts = (set, get) => ({
 
       return found ? found.name : "";
     },
+
+    clearProducts: () => set({ products: [] }),
   },
 });
