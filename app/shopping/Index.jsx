@@ -97,7 +97,9 @@ const Index = () => {
       >
         <InputAdd
           label="Nombre"
-          placeholderInput={isEdit ? "Editar nombre" : "Agregar supermercado"}
+          placeholderInput={
+            isEdit ? "Editar nombre" : "Nombre del supermercado"
+          }
           value={text}
           action={updateInputSupermarket}
           maxCharater={14}
@@ -107,7 +109,7 @@ const Index = () => {
       </ModalSeccion>
       <ModalCart
         title="Carrito"
-        subTitle="tus compras"
+        subTitle="Todas tus compras"
         total={allProductsBought.length}
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}

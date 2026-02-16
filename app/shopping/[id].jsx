@@ -92,7 +92,7 @@ function Products() {
         subTitle={
           name === "Compras rapidas"
             ? `Tu lista de ${name}`
-            : `Tus compras en ${name}`
+            : `Tus productos en ${name}`
         }
         icon="bag-handle"
         iconAction={() => setIsOpenCart(!isOpenCart)}
@@ -120,7 +120,7 @@ function Products() {
       >
         <InputAdd
           label="Nombre"
-          placeholderInput={isEdit ? "Editar producto" : "Agregar producto"}
+          placeholderInput={isEdit ? "Editar producto" : "Nombre del producto"}
           value={text}
           action={updateInput}
           maxCharater={32}
@@ -134,7 +134,7 @@ function Products() {
       </ModalSeccion>
       <ModalCart
         title="Bolsa"
-        subTitle={`Compras en ${name}`}
+        subTitle={"Tus compras"}
         total={cart.length}
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}
