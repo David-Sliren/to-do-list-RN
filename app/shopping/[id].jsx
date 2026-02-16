@@ -57,9 +57,9 @@ function Products() {
   function handlePress() {
     if (!isOpen) {
       updateInput("");
-      sheetsRef.current.expand();
       setIsOpen(true);
       setIsEdit(false);
+      sheetsRef.current.expand();
     }
   }
 
@@ -116,6 +116,7 @@ function Products() {
         action={() => setIsOpen(false)}
         title={isEdit ? "Editar" : "Producto"}
         size="66%"
+        isOpen={isOpen}
       >
         <InputAdd
           label="Nombre"

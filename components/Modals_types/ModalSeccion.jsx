@@ -1,8 +1,8 @@
 // React
-import React, { forwardRef, useCallback, useMemo } from "react";
+import React, { forwardRef, useCallback, useEffect, useMemo } from "react";
 
 // RN
-import { Text } from "react-native";
+import { Text, BackHandler } from "react-native";
 
 // Libreras
 import BottomSheet, {
@@ -13,7 +13,7 @@ import tw from "twrnc";
 import { View } from "moti";
 
 const ModalSeccion = forwardRef(function ModalSeccion(
-  { children, title, action, size = "20%" },
+  { children, isOpen, title, action, size = "20%" },
   ref,
 ) {
   const snaping = useMemo(() => [size], [size]);
@@ -21,6 +21,23 @@ const ModalSeccion = forwardRef(function ModalSeccion(
     (props) => <BottomSheetBackdrop {...props} pressBehavior="close" />,
     [],
   );
+
+  useEffect(() => {
+    const handleCloseModal = () => {
+      if (isOpen) {
+        action();
+        ref.current?.close();
+        return true;
+      }
+      return false;
+    };
+
+    const subscription = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleCloseModal,
+    );
+    return () => subscription.remove();
+  }, [isOpen, action, ref]);
 
   return (
     <BottomSheet

@@ -1,5 +1,5 @@
 // React
-import { View } from "react-native";
+import { View, BackHandler } from "react-native";
 
 // Expo
 
@@ -19,6 +19,24 @@ const ModalCart = ({
   cartClose,
 }) => {
   const sheet = useRef(null);
+
+  useEffect(() => {
+    const handleCloseCart = () => {
+      if (changeBoolean) {
+        cartClose();
+        sheet.current?.close();
+        return true;
+      }
+
+      return false;
+    };
+
+    const subscription = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleCloseCart,
+    );
+    return () => subscription.remove();
+  }, [changeBoolean, cartClose]);
 
   useEffect(() => {
     if (changeBoolean) {

@@ -93,6 +93,7 @@ const Index = () => {
         action={() => setAddSection(false)}
         title={isEdit ? "Editar" : "Supermercado"}
         size="66%"
+        isOpen={addSection}
       >
         <InputAdd
           label="Nombre"
