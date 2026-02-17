@@ -1,11 +1,8 @@
-// RN
-// import { Pressable, Text, View } from "react-native";
-
 // Expo
 import { useLocalSearchParams } from "expo-router";
 
-// Librerias
-// import tw from "twrnc";
+// Constantes
+import { EMTY_CONFIG } from "../../constants/Personalized";
 
 // Componentes
 import ShoppingScreen from "../../components/screens/ShoppingScreen";
@@ -23,10 +20,6 @@ import ButtonAddTask from "../../components/ButtonAddTask";
 import useShopping_products from "../../hooks/useShopping_products";
 
 function Products() {
-  // estados
-  const { id } = useLocalSearchParams();
-  const sheetsRef = useRef(null);
-
   // estados globals
   const {
     isOpen,
@@ -45,6 +38,10 @@ function Products() {
     checkProduct,
     cartStore,
   } = useShopping_products();
+
+  // estados comunes
+  const { id } = useLocalSearchParams();
+  const sheetsRef = useRef(null);
 
   const [isOpenCart, setIsOpenCart] = useState(false);
 
@@ -98,7 +95,11 @@ function Products() {
         iconAction={() => setIsOpenCart(!isOpenCart)}
         notifitions={cart.length ? cart.length : false}
       />
-      <BannerList action={handlePress}>
+      <BannerList
+        action={handlePress}
+        emptyState={EMTY_CONFIG.products}
+        hasChildren={store.length || false}
+      >
         {store?.map((item) => (
           <CheckItem
             key={item.id}
@@ -139,6 +140,7 @@ function Products() {
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
+        hasChildren={cart.length || false}
       >
         {cart.map((item) => (
           <ItemBought

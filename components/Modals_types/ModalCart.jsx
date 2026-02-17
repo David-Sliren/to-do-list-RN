@@ -1,13 +1,15 @@
 // React
 import { View, BackHandler } from "react-native";
 
-// Expo
+// Constantes
+import { EMTY_CONFIG } from "../../constants/Personalized";
 
 // Librerias
 import tw from "twrnc";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import BannerTitle from "../BannerTitle";
 import { useEffect, useRef } from "react";
+import EmptyState from "../EmptyState";
 
 const ModalCart = ({
   children,
@@ -17,6 +19,7 @@ const ModalCart = ({
   backAction,
   changeBoolean,
   cartClose,
+  hasChildren,
 }) => {
   const sheet = useRef(null);
 
@@ -67,6 +70,15 @@ const ModalCart = ({
         />
       </View>
 
+      {!hasChildren && (
+        <EmptyState
+          image={EMTY_CONFIG.cart.image}
+          title={EMTY_CONFIG.cart.title}
+          subtitle={EMTY_CONFIG.cart.subtitle}
+          buttontext={EMTY_CONFIG.cart.buttonText}
+          onButtonPress={cartClose}
+        />
+      )}
       <BottomSheetScrollView
         contentContainerStyle={tw`gap-3 pb-20`}
         showsVerticalScrollIndicator={false}

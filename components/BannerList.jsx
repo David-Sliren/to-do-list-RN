@@ -6,16 +6,29 @@ import { BlurView } from "expo-blur";
 
 // Librerias
 import tw from "twrnc";
-import ButtonAdd from "./ButtonAdd";
 
-const BannerList = ({ children, action }) => {
+// Componentes
+import ButtonAdd from "./ButtonAdd";
+import EmptyState from "./EmptyState";
+
+const BannerList = ({ children, action, emptyState, hasChildren }) => {
   return (
     <BlurView
       intensity={20}
       tint="dark"
       style={tw`flex-1 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
     >
-      <ButtonAdd action={action} />
+      {hasChildren && <ButtonAdd action={action} />}
+
+      {!hasChildren && (
+        <EmptyState
+          onButtonPress={action}
+          image={emptyState.image}
+          title={emptyState.title}
+          subtitle={emptyState.subtitle}
+          buttontext={emptyState.buttonText}
+        />
+      )}
 
       <ScrollView
         contentContainerStyle={tw`gap-3 pb-10`}

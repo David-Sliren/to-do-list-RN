@@ -4,10 +4,13 @@ import { useRef, useState } from "react";
 // RN
 import { View } from "react-native";
 
+// Constantes
+import { EMTY_CONFIG } from "../../constants/Personalized";
+
 // Librerias
 import tw from "twrnc";
 
-// constants
+// Components
 import Supermarket from "../../components/Supermarket";
 import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import InputAdd from "../../components/InputAdd";
@@ -16,12 +19,10 @@ import BannerTitle from "../../components/BannerTitle";
 import BannerList from "../../components/BannerList";
 import useShopping_index from "../../hooks/useShopping_index";
 import ModalCart from "../../components/Modals_types/ModalCart";
-// import CheckItem from "../../components/CheckItem";
 import ItemBought from "../../components/ItemBought";
 import ButtonAddTask from "../../components/ButtonAddTask";
 
 const Index = () => {
-  const sheetsRef = useRef(null);
   const {
     text,
     isEdit,
@@ -36,6 +37,7 @@ const Index = () => {
     allProductsBought,
     updateProducts,
   } = useShopping_index();
+  const sheetsRef = useRef(null);
 
   const [isOpenCart, setIsOpenCart] = useState(false);
 
@@ -77,7 +79,11 @@ const Index = () => {
           }
         />
       </View>
-      <BannerList action={handlePress}>
+      <BannerList
+        action={handlePress}
+        emptyState={EMTY_CONFIG.supermarket}
+        hasChildren={supermarket.length || false}
+      >
         {supermarket.map((item) => (
           <Supermarket
             key={item.id}
@@ -114,6 +120,7 @@ const Index = () => {
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
+        hasChildren={allProductsBought.length || false}
       >
         {allProductsBought.map((item) => (
           <ItemBought
