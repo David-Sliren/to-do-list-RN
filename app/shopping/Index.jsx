@@ -21,6 +21,7 @@ import useShopping_index from "../../hooks/useShopping_index";
 import ModalCart from "../../components/Modals_types/ModalCart";
 import ItemBought from "../../components/ItemBought";
 import ButtonAddTask from "../../components/ButtonAddTask";
+import { AnimatePresence } from "moti";
 
 const Index = () => {
   const {
@@ -83,17 +84,19 @@ const Index = () => {
         action={handlePress}
         emptyState={EMTY_CONFIG.supermarket}
         hasChildren={supermarket.length || false}
-      >
-        {supermarket.map((item) => (
-          <Supermarket
-            key={item.id}
-            id={item.id}
-            title={item.name}
-            deleteItem={() => deleteSupermarket(item.id)}
-            editItem={() => handleEditSupermarket(item.id)}
-          />
-        ))}
-      </BannerList>
+        flatData={supermarket}
+        flatRenderItem={({ item }) => (
+          <AnimatePresence>
+            <Supermarket
+              id={item.id}
+              title={item.name}
+              deleteItem={() => deleteSupermarket(item.id)}
+              editItem={() => handleEditSupermarket(item.id)}
+            />
+          </AnimatePresence>
+        )}
+        flatKeyExtractor={(item) => item.id}
+      />
       <ModalSeccion
         ref={sheetsRef}
         action={() => setAddSection(false)}

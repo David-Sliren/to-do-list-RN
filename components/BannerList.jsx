@@ -1,5 +1,5 @@
 // RN
-import { ScrollView } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 
 // Expo
 import { BlurView } from "expo-blur";
@@ -10,9 +10,15 @@ import tw from "twrnc";
 // Componentes
 import ButtonAdd from "./ButtonAdd";
 import EmptyState from "./EmptyState";
-import { AnimatePresence } from "moti";
 
-const BannerList = ({ children, action, emptyState, hasChildren }) => {
+const BannerList = ({
+  action,
+  emptyState,
+  hasChildren,
+  flatKeyExtractor,
+  flatRenderItem,
+  flatData,
+}) => {
   return (
     <BlurView
       intensity={20}
@@ -31,12 +37,12 @@ const BannerList = ({ children, action, emptyState, hasChildren }) => {
         />
       )}
 
-      <ScrollView
+      <FlatList
         contentContainerStyle={tw`gap-3 pb-10`}
-        showsVerticalScrollIndicator={false}
-      >
-        <AnimatePresence>{children}</AnimatePresence>
-      </ScrollView>
+        data={flatData}
+        keyExtractor={flatKeyExtractor}
+        renderItem={flatRenderItem}
+      />
     </BlurView>
   );
 };

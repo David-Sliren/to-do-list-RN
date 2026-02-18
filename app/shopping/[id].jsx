@@ -18,6 +18,7 @@ import ButtonAddTask from "../../components/ButtonAddTask";
 
 // Estados globales
 import useShopping_products from "../../hooks/useShopping_products";
+import { AnimatePresence } from "moti";
 
 function Products() {
   // estados globals
@@ -99,20 +100,22 @@ function Products() {
         action={handlePress}
         emptyState={EMTY_CONFIG.products}
         hasChildren={store.length || false}
-      >
-        {store?.map((item, i) => (
-          <CheckItem
-            key={item.id}
-            index={i}
-            id={item.id}
-            title={item.name}
-            bought={item.isbought}
-            deleteItem={() => handleDeleteProduct(item.id)}
-            changeStatus={() => handleChangeStatus(item.id)}
-            editItem={() => handleCheckProduts(item.id)}
-          />
-        ))}
-      </BannerList>
+        flatData={store}
+        flatKeyExtractor={(item) => item.id}
+        flatRenderItem={({ item, index }) => (
+          <AnimatePresence>
+            <CheckItem
+              index={index}
+              id={item.id}
+              title={item.name}
+              bought={item.isbought}
+              deleteItem={() => handleDeleteProduct(item.id)}
+              changeStatus={() => handleChangeStatus(item.id)}
+              editItem={() => handleCheckProduts(item.id)}
+            />
+          </AnimatePresence>
+        )}
+      />
       <ModalSeccion
         ref={sheetsRef}
         action={() => setIsOpen(false)}
