@@ -24,46 +24,45 @@ import ButtonAddTask from "../../components/ButtonAddTask";
 import { AnimatePresence } from "moti";
 
 const Index = () => {
-  const {
-    text,
-    isEdit,
-    addSection,
-    supermarket,
-    setIsEdit,
-    setAddSection,
-    deleteSupermarket,
-    updateInputSupermarket,
-    addSupermarket,
-    editSupermarket,
-    allProductsBought,
-    updateProducts,
-  } = useShopping_index();
   const sheetsRef = useRef(null);
-
   const [isOpenCart, setIsOpenCart] = useState(false);
 
+  const { state, methods } = useShopping_index();
+
+  const { supermarket, allProductsBought, isEdit, isOpen, text } = state;
+
+  const {
+    addSupermarket,
+    updateProducts,
+    deleteSupermarket,
+    editSupermarket,
+    updateInputSupermarket,
+    setIsEdit,
+    setIsOpen,
+  } = methods;
+
   function handlePress() {
-    if (addSection) {
+    if (isOpen) {
       sheetsRef.current?.close();
-      setAddSection(false);
+      setIsOpen(false);
       return;
     }
     updateInputSupermarket("");
     sheetsRef.current?.expand();
-    setAddSection(true);
+    setIsOpen(true);
     setIsEdit(false);
   }
 
   function handleNewSupermarket() {
     addSupermarket();
     sheetsRef.current?.close();
-    setAddSection(true);
+    setIsOpen(true);
   }
 
   function handleEditSupermarket(value) {
     editSupermarket(value);
     sheetsRef.current?.expand();
-    setAddSection(false);
+    setIsOpen(false);
     setIsEdit(true);
   }
 
@@ -99,10 +98,10 @@ const Index = () => {
       />
       <ModalSeccion
         ref={sheetsRef}
-        action={() => setAddSection(false)}
+        action={() => setIsOpen(false)}
         title={isEdit ? "Editar" : "Supermercados"}
         size="66%"
-        isOpen={addSection}
+        isOpen={isOpen}
       >
         <InputAdd
           label="Nombre"

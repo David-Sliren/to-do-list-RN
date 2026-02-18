@@ -22,23 +22,29 @@ import { AnimatePresence } from "moti";
 
 function Products() {
   // estados globals
+  const { state, methods, handles } = useShopping_products();
+
   const {
     isOpen,
     isEdit,
-    text,
     idProduct,
+    productsbuys,
+    pendingProducts,
     filterStore,
-    setIsOpen,
-    setIsEdit,
-    updateInput,
+    text,
+  } = state;
+
+  const {
     addProducts,
     editProducts,
-    handleChangeStatus,
-    handleDeleteProduct,
-    getStore,
     checkProduct,
-    cartStore,
-  } = useShopping_products();
+    getStore,
+    updateInput,
+    setIsEdit,
+    setIsOpen,
+  } = methods;
+
+  const { handleChangeStatus, handleDeleteProduct } = handles;
 
   // estados comunes
   const { id } = useLocalSearchParams();
@@ -49,8 +55,8 @@ function Products() {
   // name de store
   const name = getStore(id);
 
-  const store = filterStore(id);
-  const cart = cartStore(id);
+  const store = pendingProducts(id);
+  const cart = productsbuys(id);
 
   function handlePress() {
     if (!isOpen) {

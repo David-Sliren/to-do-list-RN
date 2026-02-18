@@ -3,7 +3,7 @@ import { useShoppingCombine } from "../store/shopping/shopping";
 import { useShallow } from "zustand/react/shallow";
 
 function useShopping_index() {
-  const [addSection, setAddSection] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
   // Estado global supermercado
@@ -38,21 +38,24 @@ function useShopping_index() {
   } = useShoppingCombine((state) => state.stores_actions);
 
   return {
-    text,
-    isEdit,
-    supermarket,
-    addSection,
-    flashShopping,
+    state: {
+      text,
+      isEdit,
+      supermarket,
+      isOpen,
+      allProductsBought,
+    },
 
-    // metodos
-    setIsEdit,
-    setAddSection,
-    addSupermarket,
-    updateInputSupermarket,
-    deleteSupermarket,
-    editSupermarket,
-    allProductsBought,
-    updateProducts,
+    methods: {
+      setIsEdit,
+      setIsOpen,
+      addSupermarket,
+      updateInputSupermarket,
+      deleteSupermarket,
+      editSupermarket,
+      updateProducts,
+    },
+    flashShopping,
   };
 }
 

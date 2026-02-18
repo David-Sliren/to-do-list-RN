@@ -25,33 +25,41 @@ function useShopping_products() {
       ? products.filter((items) => items.idSupermarket === Number(id))
       : [];
 
-  const cartStore = (id) =>
+  const productsbuys = (id) =>
     filterStore(id).filter((items) => items.isbought === true);
+
+  const pendingProducts = (id) =>
+    filterStore(id).filter((items) => items.isbought !== true);
 
   const handleChangeStatus = (id) => updateProducts(id);
 
   const handleDeleteProduct = (id) => deleteProducts(id);
 
   return {
-    isOpen,
-    isEdit,
-    text,
-    idProduct,
-    filterStore,
-    cartStore,
+    state: {
+      isOpen,
+      isEdit,
+      text,
+      idProduct,
+      filterStore,
+      productsbuys,
+      pendingProducts,
+    },
 
-    // metodos
-    setIsOpen,
-    setIsEdit,
-    updateInput,
-    addProducts,
-    editProducts,
-    checkProduct,
-    getStore,
+    methods: {
+      setIsOpen,
+      setIsEdit,
+      updateInput,
+      addProducts,
+      editProducts,
+      checkProduct,
+      getStore,
+    },
 
-    // Handles
-    handleChangeStatus,
-    handleDeleteProduct,
+    handles: {
+      handleChangeStatus,
+      handleDeleteProduct,
+    },
   };
 }
 
