@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "IsDone Plus",
-    "slug": "to-do-list",
-    "scheme": "isdoneplus",
+    "name": "Renpentain",
+    "slug": "renpentain",
+    "scheme": "renpentain",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,14 +11,14 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#71D7E4"
+      "backgroundColor": "#B9FEFA"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.davidsliren.isdoneplus"
+      "bundleIdentifier": "com.davidsliren.renpentain"
     },
     "android": {
-      "package": "com.davidsliren.isdoneplus",
+      "package": "com.davidsliren.renpentain",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#71D7E4"
@@ -26,7 +26,7 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.ico"
     },
     "plugins": ["expo-router", "expo-font"]
   }
