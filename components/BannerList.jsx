@@ -10,6 +10,7 @@ import tw from "twrnc";
 // Componentes
 import ButtonAdd from "./ButtonAdd";
 import EmptyState from "./EmptyState";
+import { AnimatePresence } from "moti";
 
 const BannerList = ({ children, action, emptyState, hasChildren }) => {
   return (
@@ -34,7 +35,7 @@ const BannerList = ({ children, action, emptyState, hasChildren }) => {
         contentContainerStyle={tw`gap-3 pb-10`}
         showsVerticalScrollIndicator={false}
       >
-        {children}
+        <AnimatePresence>{children}</AnimatePresence>
       </ScrollView>
     </BlurView>
   );

@@ -1,5 +1,5 @@
 // RN
-import { View, Text, Pressable } from "react-native";
+import { View, Text } from "react-native";
 
 // Expo
 import { Ionicons } from "@expo/vector-icons";
@@ -10,10 +10,15 @@ import { MotiView } from "moti";
 // Librerias
 import tw from "twrnc";
 import ButtonDelete from "./ButtonDelete";
+import { LinearTransition } from "react-native-reanimated";
 
 const ItemBought = ({ title = "", subTitle = "", bought, deleteItem }) => {
   return (
-    <View
+    <MotiView
+      animate={{ translateX: 0, opacity: 1 }}
+      exit={{ translateX: -200, opacity: 0 }}
+      exitTransition={{ duration: 200 }}
+      layout={LinearTransition}
       style={tw`relative flex-row justify-between items-center   py-2 px-1 rounded-lg overflow-hidden`}
     >
       <View style={tw`flex-row items-center gap-2`}>
@@ -26,7 +31,7 @@ const ItemBought = ({ title = "", subTitle = "", bought, deleteItem }) => {
         </View>
       </View>
       <ButtonDelete action={deleteItem} />
-    </View>
+    </MotiView>
   );
 };
 

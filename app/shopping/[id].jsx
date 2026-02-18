@@ -100,9 +100,10 @@ function Products() {
         emptyState={EMTY_CONFIG.products}
         hasChildren={store.length || false}
       >
-        {store?.map((item) => (
+        {store?.map((item, i) => (
           <CheckItem
             key={item.id}
+            index={i}
             id={item.id}
             title={item.name}
             bought={item.isbought}

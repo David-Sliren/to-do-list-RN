@@ -1,15 +1,21 @@
+// RN
 import { Text, Pressable, Image, View } from "react-native";
+
+// Expo
 import { Ionicons } from "@expo/vector-icons";
-import tw from "twrnc";
 import { useRouter } from "expo-router";
-import { BlurView } from "expo-blur";
+
+// Libreras
+import tw from "twrnc";
+import { MotiView } from "moti";
+
 const Activity = ({ title = "", icon = "", route = "", image = "" }) => {
   const router = useRouter();
 
   return (
-    <View
-      // intensity={20}
-      // tint="dark"
+    <MotiView
+      from={{ translateY: 20, opacity: 0 }}
+      animate={{ translateY: 0, opacity: 1 }}
       style={tw` bg-sky-400 border border-black/20 h-48 w-full shadow-lg rounded-xl overflow-hidden`}
     >
       <Pressable style={tw`size-full`} onPress={() => router.push(route)}>
@@ -21,7 +27,7 @@ const Activity = ({ title = "", icon = "", route = "", image = "" }) => {
         </View>
         <Image source={image} style={tw`size-40 mx-auto -translate-y-5`} />
       </Pressable>
-    </View>
+    </MotiView>
   );
 };
 

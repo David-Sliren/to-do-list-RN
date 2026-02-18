@@ -10,6 +10,7 @@ import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import BannerTitle from "../BannerTitle";
 import { useEffect, useRef } from "react";
 import EmptyState from "../EmptyState";
+import { AnimatePresence } from "moti";
 
 const ModalCart = ({
   children,
@@ -84,7 +85,7 @@ const ModalCart = ({
         showsVerticalScrollIndicator={false}
         style={tw` bg-zinc-500/20 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
       >
-        {children}
+        <AnimatePresence>{children}</AnimatePresence>
       </BottomSheetScrollView>
     </BottomSheet>
   );

@@ -11,7 +11,7 @@ export default function _layout() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Stack
           screenOptions={{
-            animation: "slide_from_left",
+            animation: "fade_from_bottom",
             headerShown: false,
           }}
         />

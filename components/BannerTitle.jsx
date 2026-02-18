@@ -7,6 +7,9 @@ import { BlurView } from "expo-blur";
 
 // Librerias
 import tw from "twrnc";
+import { MotiView } from "moti";
+import { FadeInLeft, FadeOut } from "react-native-reanimated";
+import { MotiPressable } from "moti/interactions";
 
 const BannerTitle = ({
   title = "",
@@ -35,13 +38,25 @@ const BannerTitle = ({
           {subTitle}
         </Text>
       </View>
-      <Pressable style={tw`relative`} onPress={iconAction}>
+      <MotiPressable
+        style={tw`relative`}
+        animate={({ pressed }) => {
+          "worklet";
+          return {
+            scale: pressed ? 0.95 : 1,
+          };
+        }}
+        transition={{ type: "spring" }}
+        onPress={iconAction}
+      >
         {notifitions && (
-          <View
+          <MotiView
+            entering={FadeInLeft}
+            exiting={FadeOut}
             style={tw`absolute -left-1 -top-2 justify-center items-center bg-black rounded-full ${notifitions < 99 ? "size-5" : "w-fit px-1"}`}
           >
             <Text style={tw`text-sm text-white`}>{notifitions}</Text>
-          </View>
+          </MotiView>
         )}
         <BlurView
           intensity={20}
@@ -53,7 +68,7 @@ const BannerTitle = ({
             style={[tw`text-3xl text-black/80`, { color: colorIcon }]}
           />
         </BlurView>
-      </Pressable>
+      </MotiPressable>
     </View>
   );
 };

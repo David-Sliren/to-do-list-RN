@@ -17,7 +17,6 @@ const EmptyState = ({ image, title, subtitle, buttontext, onButtonPress }) => {
       <Text style={tw`text-base text-gray-500 text-center mt-2 mb-6`}>
         {subtitle}
       </Text>
-      {/* Botón de apoyo opcional cerca del texto */}
       <Pressable
         onPress={() => onButtonPress()}
         style={tw`bg-teal-500 py-3 px-6 rounded-full z-10`}
