@@ -19,7 +19,6 @@ import BannerTitle from "../../components/BannerTitle";
 import BannerList from "../../components/BannerList";
 import useShopping_index from "../../hooks/useShopping_index";
 import ModalCart from "../../components/Modals_types/ModalCart";
-import ItemBought from "../../components/ItemBought";
 import ButtonAddTask from "../../components/ButtonAddTask";
 import { AnimatePresence } from "moti";
 

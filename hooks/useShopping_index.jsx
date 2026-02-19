@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useShoppingCombine } from "../store/shopping/shopping";
 import { useShallow } from "zustand/react/shallow";
 
@@ -10,25 +10,21 @@ function useShopping_index() {
   const supermarket = useShoppingCombine(
     useShallow((state) => state.supermarket.slice(1)),
   );
-  const flashShopping = useShoppingCombine((state) => state.supermarket[0].id);
-  const allProductsBought = useShoppingCombine(
-    useShallow((state) =>
-      state.products.filter(
-        (item) =>
-          item.isbought === true && item.idSupermarket !== flashShopping,
-      ),
-    ),
-  );
+  const flashShopping = useShoppingCombine((state) => state.supermarket[0]?.id);
+  const products = useShoppingCombine((state) => state.products);
+
   const { text } = useShoppingCombine((state) => state.inputSupermarket);
-  const { updateProducts, clearProducts } = useShoppingCombine(
+  const { updateProducts } = useShoppingCombine(
     (state) => state.products_actions,
   );
 
-  useEffect(() => {
-    if (!supermarket.length && allProductsBought.length) {
-      clearProducts();
-    }
-  }, [supermarket, clearProducts, allProductsBought]);
+  const allProductsBought = useMemo(
+    () =>
+      products.filter(
+        (item) => item.isbought && item.idSupermarket !== flashShopping,
+      ),
+    [products, flashShopping],
+  );
 
   const {
     updateInputSupermarket,

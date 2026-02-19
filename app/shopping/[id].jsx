@@ -13,7 +13,6 @@ import ModalSeccion from "../../components/Modals_types/ModalSeccion";
 import { useRef, useState } from "react";
 import InputAdd from "../../components/InputAdd";
 import ModalCart from "../../components/Modals_types/ModalCart";
-import ItemBought from "../../components/ItemBought";
 import ButtonAddTask from "../../components/ButtonAddTask";
 
 // Estados globales
@@ -21,8 +20,14 @@ import useShopping_products from "../../hooks/useShopping_products";
 import { AnimatePresence } from "moti";
 
 function Products() {
+  // estados comunes
+  const { id } = useLocalSearchParams();
+  const sheetsRef = useRef(null);
+
+  const [isOpenCart, setIsOpenCart] = useState(false);
+
   // estados globals
-  const { state, methods, handles } = useShopping_products();
+  const { state, methods, handles } = useShopping_products(id);
 
   const { isOpen, isEdit, idProduct, productsbuys, pendingProducts, text } =
     state;
@@ -39,17 +44,8 @@ function Products() {
 
   const { handleChangeStatus, handleDeleteProduct } = handles;
 
-  // estados comunes
-  const { id } = useLocalSearchParams();
-  const sheetsRef = useRef(null);
-
-  const [isOpenCart, setIsOpenCart] = useState(false);
-
   // name de store
   const name = getStore(id);
-
-  const store = pendingProducts(id);
-  const cart = productsbuys(id);
 
   function handlePress() {
     if (!isOpen) {
@@ -93,13 +89,13 @@ function Products() {
         }
         icon="bag-handle"
         iconAction={() => setIsOpenCart(!isOpenCart)}
-        notifitions={cart.length ? cart.length : false}
+        notifitions={productsbuys.length ? productsbuys.length : false}
       />
       <BannerList
         action={handlePress}
         emptyState={EMTY_CONFIG.products}
-        hasChildren={store.length || false}
-        flatData={store}
+        hasChildren={pendingProducts.length || false}
+        flatData={pendingProducts}
         flatKeyExtractor={(item) => item.id}
         flatRenderItem={({ item, index }) => (
           <AnimatePresence>
@@ -139,12 +135,12 @@ function Products() {
       <ModalCart
         title="Bolsa"
         subTitle={"Tus compras"}
-        total={cart.length}
+        total={productsbuys.length}
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
-        hasChildren={cart.length || false}
-        flatData={cart}
+        hasChildren={productsbuys.length || false}
+        flatData={productsbuys}
         flatHandle={handleChangeStatus}
       ></ModalCart>
     </ShoppingScreen>

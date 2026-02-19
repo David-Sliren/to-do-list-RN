@@ -1,4 +1,5 @@
 export const useShoppingStores = (set, get) => ({
+  // Supermercado
   inputSupermarket: { text: "", id: 0 },
   supermarket: [
     {
@@ -7,7 +8,6 @@ export const useShoppingStores = (set, get) => ({
     },
   ],
   stores_actions: {
-    // Supermercado
     updateInputSupermarket: (value) =>
       set((state) => ({
         inputSupermarket: {
@@ -54,13 +54,25 @@ export const useShoppingStores = (set, get) => ({
       set({ inputSupermarket: { text: valueFilter.name, id: valueFilter.id } });
     },
 
-    deleteSupermarket: (value) => {
-      const valueFilter = get()?.supermarket?.filter(
-        (item) => item.id !== value,
-      );
+    deleteSupermarket: (value) =>
+      set((state) => {
+        const newSupermarkets = state.supermarket.filter(
+          (item) => item.id !== value,
+        );
 
-      set({ supermarket: valueFilter });
-    },
+        const isOnlyFlashRemaining = newSupermarkets.length <= 1;
+
+        const cleanProducts = isOnlyFlashRemaining
+          ? state.products.filter(
+              (p) => p.idSupermarket === state.supermarket[0].id,
+            )
+          : state.products;
+
+        return {
+          supermarket: newSupermarkets,
+          products: cleanProducts,
+        };
+      }),
 
     resetSupermarket: () => set({ supermarket: [] }),
   },

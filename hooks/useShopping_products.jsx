@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useShoppingCombine } from "../store/shopping/shopping";
-function useShopping_products() {
+function useShopping_products(id) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -20,16 +20,21 @@ function useShopping_products() {
     updateProducts,
   } = useShoppingCombine((state) => state.products_actions);
 
-  const filterStore = (id) =>
-    products
+  const currentStoreProducts = useMemo(() => {
+    return products
       ? products.filter((items) => items.idSupermarket === Number(id))
       : [];
+  }, [products, id]);
 
-  const productsbuys = (id) =>
-    filterStore(id).filter((items) => items.isbought === true);
+  const productsbuys = useMemo(
+    () => currentStoreProducts.filter((items) => items.isbought === true),
+    [currentStoreProducts],
+  );
 
-  const pendingProducts = (id) =>
-    filterStore(id).filter((items) => items.isbought !== true);
+  const pendingProducts = useMemo(
+    () => currentStoreProducts.filter((items) => items.isbought !== true),
+    [currentStoreProducts],
+  );
 
   const handleChangeStatus = (id) => updateProducts(id);
 
@@ -41,7 +46,7 @@ function useShopping_products() {
       isEdit,
       text,
       idProduct,
-      filterStore,
+      filterStore: currentStoreProducts,
       productsbuys,
       pendingProducts,
     },
