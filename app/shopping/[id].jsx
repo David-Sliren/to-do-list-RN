@@ -144,17 +144,9 @@ function Products() {
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
         hasChildren={cart.length || false}
-      >
-        {cart.map((item) => (
-          <ItemBought
-            key={item.id}
-            title={item.name}
-            subTitle={item.supermarket}
-            deleteItem={() => handleChangeStatus(item.id)}
-            bought={item.isbought}
-          />
-        ))}
-      </ModalCart>
+        flatData={cart}
+        flatHandle={handleChangeStatus}
+      ></ModalCart>
     </ShoppingScreen>
   );
 }

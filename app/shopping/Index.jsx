@@ -123,17 +123,9 @@ const Index = () => {
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
         hasChildren={allProductsBought.length || false}
-      >
-        {allProductsBought.map((item) => (
-          <ItemBought
-            key={item.id}
-            title={item.name}
-            subTitle={item.supermarket}
-            bought={item.isbought}
-            deleteItem={() => updateProducts(item.id)}
-          />
-        ))}
-      </ModalCart>
+        flatData={allProductsBought}
+        flatHandle={updateProducts}
+      ></ModalCart>
     </ShoppingScreen>
   );
 };

@@ -6,11 +6,12 @@ import { EMTY_CONFIG } from "../../constants/Personalized";
 
 // Librerias
 import tw from "twrnc";
-import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import BannerTitle from "../BannerTitle";
 import { useEffect, useRef } from "react";
 import EmptyState from "../EmptyState";
 import { AnimatePresence } from "moti";
+import ItemBought from "../ItemBought";
 
 const ModalCart = ({
   children,
@@ -21,6 +22,8 @@ const ModalCart = ({
   changeBoolean,
   cartClose,
   hasChildren,
+  flatData,
+  flatHandle,
 }) => {
   const sheet = useRef(null);
 
@@ -80,13 +83,25 @@ const ModalCart = ({
           onButtonPress={cartClose}
         />
       )}
-      <BottomSheetScrollView
-        contentContainerStyle={tw`gap-3 pb-20`}
-        showsVerticalScrollIndicator={false}
-        style={tw` bg-zinc-500/20 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
-      >
-        <AnimatePresence>{children}</AnimatePresence>
-      </BottomSheetScrollView>
+
+      <AnimatePresence>
+        <BottomSheetFlatList
+          data={flatData}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <ItemBought
+              key={item.id}
+              title={item.name}
+              subTitle={item.supermarket}
+              deleteItem={() => flatHandle(item.id)}
+              bought={item.isbought}
+            />
+          )}
+          contentContainerStyle={tw`gap-3 pb-20`}
+          style={tw` bg-zinc-500/20 border border-black/20 rounded-t-[35px] pt-8 px-5 overflow-hidden`}
+          showsVerticalScrollIndicator={false}
+        />
+      </AnimatePresence>
     </BottomSheet>
   );
 };
