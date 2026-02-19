@@ -2,7 +2,7 @@
 import React, { forwardRef, useCallback, useEffect, useMemo } from "react";
 
 // RN
-import { Text, BackHandler } from "react-native";
+import { Text, BackHandler, Keyboard } from "react-native";
 
 // Libreras
 import BottomSheet, {
@@ -16,6 +16,11 @@ const ModalSeccion = forwardRef(function ModalSeccion(
   { children, isOpen, title, action, size = "20%" },
   ref,
 ) {
+  function onCloseModal() {
+    action();
+    Keyboard.dismiss();
+  }
+
   const snaping = useMemo(() => [size], [size]);
   const renderBackdrop = useCallback(
     (props) => <BottomSheetBackdrop {...props} pressBehavior="close" />,
@@ -47,8 +52,9 @@ const ModalSeccion = forwardRef(function ModalSeccion(
       backgroundStyle={tw` rounded-[41px]`}
       backdropComponent={renderBackdrop}
       enablePanDownToClose={true}
-      onClose={action}
+      onClose={onCloseModal}
       enableDynamicSizing={true}
+      keyboardBehavior="extend"
     >
       <BottomSheetView style={tw`gap-4 p-4`}>
         <Text style={tw`text-2xl font-semibold`}>{title}</Text>
