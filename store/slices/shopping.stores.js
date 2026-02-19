@@ -1,12 +1,18 @@
+import { getId } from "../../utils/id";
+
 export const useShoppingStores = (set, get) => ({
   // Supermercado
   inputSupermarket: { text: "", id: 0 },
   supermarket: [
     {
-      id: Date.now(),
+      id: getId(),
+      date: new Date(),
       name: "Compras rapidas",
     },
   ],
+  sortSupermarket: "",
+  sortCart: "",
+
   stores_actions: {
     updateInputSupermarket: (value) =>
       set((state) => ({
@@ -20,9 +26,7 @@ export const useShoppingStores = (set, get) => ({
       if (get().inputSupermarket.text.trim() === "") return;
 
       const idtask =
-        get().inputSupermarket?.id !== 0
-          ? get().inputSupermarket?.id
-          : Date.now();
+        get().inputSupermarket?.id !== 0 ? get().inputSupermarket?.id : getId();
 
       const exist = get().supermarket.some((item) => item.id === idtask);
 
@@ -36,7 +40,8 @@ export const useShoppingStores = (set, get) => ({
           : [
               ...get().supermarket,
               {
-                id: Date.now(),
+                id: idtask,
+                date: new Date(),
                 name: get().inputSupermarket.text.toUpperCase(),
               },
             ];
@@ -75,5 +80,12 @@ export const useShoppingStores = (set, get) => ({
       }),
 
     resetSupermarket: () => set({ supermarket: [] }),
+
+    updateSortSupermarket: (text) => set({ sortSupermarket: text }),
+    updateSortCart: (text) => set({ sortCart: text }),
   },
+
+  // derivatives: {
+  //   quickShopping: () => get().supermarket[0].id,
+  // },
 });

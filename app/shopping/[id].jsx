@@ -17,7 +17,6 @@ import ButtonAddTask from "../../components/ButtonAddTask";
 
 // Estados globales
 import useShopping_products from "../../hooks/useShopping_products";
-import { AnimatePresence } from "moti";
 
 function Products() {
   // estados comunes
@@ -29,17 +28,25 @@ function Products() {
   // estados globals
   const { state, methods, handles } = useShopping_products(id);
 
-  const { isOpen, isEdit, idProduct, productsbuys, pendingProducts, text } =
-    state;
+  const {
+    isOpen,
+    isEdit,
+    idProduct,
+    sortProductsbuys,
+    sortPendingProducts,
+    text,
+  } = state;
 
   const {
-    addProducts,
-    editProducts,
-    checkProduct,
-    getStore,
-    updateInput,
     setIsEdit,
     setIsOpen,
+    getStore,
+    addProducts,
+    checkProduct,
+    editProducts,
+    updateInput,
+    updateSortProducts,
+    updateSortCart,
   } = methods;
 
   const { handleChangeStatus, handleDeleteProduct } = handles;
@@ -89,27 +96,26 @@ function Products() {
         }
         icon="bag-handle"
         iconAction={() => setIsOpenCart(!isOpenCart)}
-        notifitions={productsbuys.length ? productsbuys.length : false}
+        notifitions={sortProductsbuys.length ? sortProductsbuys.length : false}
       />
       <BannerList
         action={handlePress}
         emptyState={EMTY_CONFIG.products}
-        hasChildren={pendingProducts.length || false}
-        flatData={pendingProducts}
+        hasChildren={sortPendingProducts.length || false}
+        flatData={sortPendingProducts}
         flatKeyExtractor={(item) => item.id}
         flatRenderItem={({ item, index }) => (
-          <AnimatePresence>
-            <CheckItem
-              index={index}
-              id={item.id}
-              title={item.name}
-              bought={item.isbought}
-              deleteItem={() => handleDeleteProduct(item.id)}
-              changeStatus={() => handleChangeStatus(item.id)}
-              editItem={() => handleCheckProduts(item.id)}
-            />
-          </AnimatePresence>
+          <CheckItem
+            index={index}
+            id={item.id}
+            title={item.name}
+            bought={item.isbought}
+            deleteItem={() => handleDeleteProduct(item.id)}
+            changeStatus={() => handleChangeStatus(item.id)}
+            editItem={() => handleCheckProduts(item.id)}
+          />
         )}
+        flatHandle={updateSortProducts}
       />
       <ModalSeccion
         ref={sheetsRef}
@@ -135,13 +141,14 @@ function Products() {
       <ModalCart
         title="Bolsa"
         subTitle={"Tus compras"}
-        total={productsbuys.length}
+        total={sortProductsbuys.length}
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
-        hasChildren={productsbuys.length || false}
-        flatData={productsbuys}
+        hasChildren={sortProductsbuys.length || false}
+        flatData={sortProductsbuys}
         flatHandle={handleChangeStatus}
+        flatHeaderHandle={updateSortCart}
       ></ModalCart>
     </ShoppingScreen>
   );

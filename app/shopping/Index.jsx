@@ -20,7 +20,6 @@ import BannerList from "../../components/BannerList";
 import useShopping_index from "../../hooks/useShopping_index";
 import ModalCart from "../../components/Modals_types/ModalCart";
 import ButtonAddTask from "../../components/ButtonAddTask";
-import { AnimatePresence } from "moti";
 
 const Index = () => {
   const sheetsRef = useRef(null);
@@ -28,16 +27,18 @@ const Index = () => {
 
   const { state, methods } = useShopping_index();
 
-  const { supermarket, allProductsBought, isEdit, isOpen, text } = state;
+  const { sortSupermarkets, sortProductsBought, isEdit, isOpen, text } = state;
 
   const {
-    addSupermarket,
-    updateProducts,
-    deleteSupermarket,
-    editSupermarket,
-    updateInputSupermarket,
     setIsEdit,
     setIsOpen,
+    addSupermarket,
+    editSupermarket,
+    deleteSupermarket,
+    updateProducts,
+    updateInputSupermarket,
+    updateSortSupermarket,
+    updateSortCart,
   } = methods;
 
   function handlePress() {
@@ -74,26 +75,25 @@ const Index = () => {
           icon="cart"
           iconAction={() => setIsOpenCart(!isOpenCart)}
           notifitions={
-            allProductsBought.length ? allProductsBought.length : false
+            sortProductsBought.length ? sortProductsBought.length : false
           }
         />
       </View>
       <BannerList
         action={handlePress}
         emptyState={EMTY_CONFIG.supermarket}
-        hasChildren={supermarket.length || false}
-        flatData={supermarket}
+        hasChildren={sortSupermarkets.length || false}
+        flatData={sortSupermarkets}
         flatRenderItem={({ item }) => (
-          <AnimatePresence>
-            <Supermarket
-              id={item.id}
-              title={item.name}
-              deleteItem={() => deleteSupermarket(item.id)}
-              editItem={() => handleEditSupermarket(item.id)}
-            />
-          </AnimatePresence>
+          <Supermarket
+            id={item.id}
+            title={item.name}
+            deleteItem={() => deleteSupermarket(item.id)}
+            editItem={() => handleEditSupermarket(item.id)}
+          />
         )}
         flatKeyExtractor={(item) => item.id}
+        flatHandle={updateSortSupermarket}
       />
       <ModalSeccion
         ref={sheetsRef}
@@ -117,13 +117,14 @@ const Index = () => {
       <ModalCart
         title="Carrito"
         subTitle="Todas tus compras"
-        total={allProductsBought.length}
+        total={sortProductsBought.length}
         changeBoolean={isOpenCart}
         backAction={() => setIsOpenCart(false)}
         cartClose={() => setIsOpenCart(false)}
-        hasChildren={allProductsBought.length || false}
-        flatData={allProductsBought}
+        hasChildren={sortProductsBought.length || false}
+        flatData={sortProductsBought}
         flatHandle={updateProducts}
+        flatHeaderHandle={updateSortCart}
       ></ModalCart>
     </ShoppingScreen>
   );

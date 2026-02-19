@@ -12,9 +12,9 @@ import { useEffect, useRef } from "react";
 import EmptyState from "../EmptyState";
 import { AnimatePresence } from "moti";
 import ItemBought from "../ItemBought";
+import OrderList from "../OrderList";
 
 const ModalCart = ({
-  children,
   title = "",
   subTitle = "",
   total,
@@ -24,6 +24,7 @@ const ModalCart = ({
   hasChildren,
   flatData,
   flatHandle,
+  flatHeaderHandle,
 }) => {
   const sheet = useRef(null);
 
@@ -87,6 +88,9 @@ const ModalCart = ({
       <AnimatePresence>
         <BottomSheetFlatList
           data={flatData}
+          ListHeaderComponent={<OrderList handle={flatHeaderHandle} />}
+          stickyHeaderHiddenOnScroll={true}
+          ListHeaderComponentStyle={tw`border-b rounded-lg ${flatData.length ? "opacity-100" : "opacity-0"}`}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <ItemBought
