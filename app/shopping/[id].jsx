@@ -24,15 +24,8 @@ function Products() {
   // estados globals
   const { state, methods, handles } = useShopping_products();
 
-  const {
-    isOpen,
-    isEdit,
-    idProduct,
-    productsbuys,
-    pendingProducts,
-    filterStore,
-    text,
-  } = state;
+  const { isOpen, isEdit, idProduct, productsbuys, pendingProducts, text } =
+    state;
 
   const {
     addProducts,

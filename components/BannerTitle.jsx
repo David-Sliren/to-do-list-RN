@@ -1,5 +1,5 @@
 // RN
-import { View, Text, Pressable } from "react-native";
+import { View, Text } from "react-native";
 
 // Expo
 import { Ionicons } from "@expo/vector-icons";
@@ -7,8 +7,7 @@ import { BlurView } from "expo-blur";
 
 // Librerias
 import tw from "twrnc";
-import { MotiView } from "moti";
-import { FadeInLeft, FadeOut } from "react-native-reanimated";
+import { AnimatePresence, MotiView } from "moti";
 import { MotiPressable } from "moti/interactions";
 
 const BannerTitle = ({
@@ -49,15 +48,19 @@ const BannerTitle = ({
         transition={{ type: "spring" }}
         onPress={iconAction}
       >
-        {notifitions && (
-          <MotiView
-            entering={FadeInLeft}
-            exiting={FadeOut}
-            style={tw`absolute -left-1 -top-2 justify-center items-center bg-black rounded-full ${notifitions < 99 ? "size-5" : "w-fit px-1"}`}
-          >
-            <Text style={tw`text-sm text-white`}>{notifitions}</Text>
-          </MotiView>
-        )}
+        <AnimatePresence>
+          {notifitions && (
+            <MotiView
+              from={{ translateX: -20, opacity: 0 }}
+              animate={{ translateX: 0, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              exitTransition={{ duration: 1000 }}
+              style={tw`absolute -left-1 -top-2 justify-center items-center bg-black rounded-full ${notifitions < 99 ? "size-5" : "w-fit px-1"}`}
+            >
+              <Text style={tw`text-sm text-white`}>{notifitions}</Text>
+            </MotiView>
+          )}
+        </AnimatePresence>
         <BlurView
           intensity={20}
           tint="dark"
