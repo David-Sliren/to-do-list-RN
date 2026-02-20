@@ -17,7 +17,15 @@ export const useShoppingCombine = create(
     }),
     {
       name: "shopping-store",
+      version: 2,
       storage: createJSONStorage(() => AsyncStorage),
+      partialize: (state) => ({
+        supermarket: state.supermarket,
+        products: state.products,
+        sortSupermarket: state.sortSupermarket,
+        sortProducts: state.sortProducts,
+        sortCart: state.sortCart,
+      }),
     },
   ),
 );

@@ -1,10 +1,10 @@
 import { getId } from "../../utils/id";
+import { getDateNow } from "../../utils/date";
 
 export const useShoppingProducts = (set, get) => ({
   // Productos
   inputProducts: { text: "", idProduct: 0 },
   products: [],
-  store: "",
   sortProducts: "",
 
   products_actions: {
@@ -17,13 +17,15 @@ export const useShoppingProducts = (set, get) => ({
       }),
 
     addProducts: (id) => {
-      if (get().inputProducts.text.trim() === "") return;
-      const supermarket = get().supermarket;
-      const exist = supermarket.find((item) => item.id === id);
+      const { supermarket, inputProducts } = get();
+      if (inputProducts.text.trim() === "") return;
+
+      const exist = supermarket?.find((item) => item.id === id);
+
       const newProduct = {
         id: getId(),
-        date: new Date(),
-        name: get().inputProducts.text,
+        date: getDateNow(),
+        name: inputProducts.text,
         supermarket: exist.name,
         idSupermarket: exist.id,
         isbought: false,
@@ -39,7 +41,7 @@ export const useShoppingProducts = (set, get) => ({
       set((state) => ({
         products: state.products?.map((item) =>
           item.id === id
-            ? { ...item, date: new Date(), isbought: !item.isbought }
+            ? { ...item, date: getDateNow(), isbought: !item.isbought }
             : item,
         ),
       })),
@@ -52,7 +54,7 @@ export const useShoppingProducts = (set, get) => ({
     checkProduct: (id) => {
       const { products } = get();
 
-      const exist = products.find((item) => item.id === id);
+      const exist = products?.find((item) => item.id === id);
 
       set({
         inputProducts: {
@@ -71,7 +73,7 @@ export const useShoppingProducts = (set, get) => ({
           : item,
       );
 
-      set({ products: newProducts, inputProducts: { text: "", id: 0 } });
+      set({ products: newProducts, inputProducts: { text: "", idProduct: 0 } });
     },
 
     clearProducts: () => set({ products: [] }),

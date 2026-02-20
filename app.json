@@ -3,7 +3,7 @@
     "name": "Renpentain",
     "slug": "renpentain",
     "scheme": "renpentain",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,10 +15,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.davidsliren.renpentain"
+      "bundleIdentifier": "com.davidsliren.renpentain",
+      "buildNumber": "2"
     },
     "android": {
       "package": "com.davidsliren.renpentain",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#71D7E4"
@@ -28,10 +30,7 @@
     "web": {
       "favicon": "./assets/favicon.ico"
     },
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ],
+    "plugins": ["expo-router", "expo-font"],
     "extra": {
       "router": {},
       "eas": {

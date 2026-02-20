@@ -1,4 +1,5 @@
 import { getId } from "../../utils/id";
+import { getDateNow } from "../../utils/date";
 
 export const useShoppingStores = (set, get) => ({
   // Supermercado
@@ -6,7 +7,7 @@ export const useShoppingStores = (set, get) => ({
   supermarket: [
     {
       id: getId(),
-      date: new Date(),
+      date: getDateNow(),
       name: "Compras rapidas",
     },
   ],
@@ -41,7 +42,7 @@ export const useShoppingStores = (set, get) => ({
               ...get().supermarket,
               {
                 id: idtask,
-                date: new Date(),
+                date: getDateNow(),
                 name: get().inputSupermarket.text.toUpperCase(),
               },
             ];
@@ -54,9 +55,18 @@ export const useShoppingStores = (set, get) => ({
     },
 
     editSupermarket: (value) => {
-      const valueFilter = get().supermarket.find((item) => item.id === value);
+      const filterSupermarket = get().supermarket?.find(
+        (item) => item.id === value,
+      );
 
-      set({ inputSupermarket: { text: valueFilter.name, id: valueFilter.id } });
+      if (!filterSupermarket) return;
+
+      set({
+        inputSupermarket: {
+          text: filterSupermarket.name,
+          id: filterSupermarket.id,
+        },
+      });
     },
 
     deleteSupermarket: (value) =>
@@ -65,7 +75,8 @@ export const useShoppingStores = (set, get) => ({
           (item) => item.id !== value,
         );
 
-        const isOnlyFlashRemaining = newSupermarkets.length <= 1;
+        const isOnlyFlashRemaining =
+          newSupermarkets.length <= 1 && newSupermarkets.length > 0;
 
         const cleanProducts = isOnlyFlashRemaining
           ? state.products.filter(
@@ -84,8 +95,4 @@ export const useShoppingStores = (set, get) => ({
     updateSortSupermarket: (text) => set({ sortSupermarket: text }),
     updateSortCart: (text) => set({ sortCart: text }),
   },
-
-  // derivatives: {
-  //   quickShopping: () => get().supermarket[0].id,
-  // },
 });
