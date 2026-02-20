@@ -1,5 +1,6 @@
 // Expo
 import { Stack } from "expo-router";
+import { LogBox } from "react-native";
 
 // Librerias
 import tw, { useDeviceContext } from "twrnc";
@@ -8,17 +9,18 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   useDeviceContext(tw);
+  LogBox.ignoreLogs(["ViewPropTypes", "SafeAreaView"]);
 
   return (
-    <SafeAreaProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
         <Stack
           screenOptions={{
             animation: "fade_from_bottom",
             headerShown: false,
           }}
         />
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }

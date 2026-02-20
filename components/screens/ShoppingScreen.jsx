@@ -1,15 +1,17 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 // expo
 import { LinearGradient } from "expo-linear-gradient";
 
 // Librerias
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colorBody } from "../../constants/colorsPrincipals";
 
 const ShoppingScreen = ({ children }) => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colorBody.gray }}>
+    <View style={{ flex: 1, backgroundColor: colorBody.gray }}>
       <LinearGradient
         colors={[colorBody.aqua, "#D4FCFC"]}
         locations={[0.6, 1]}
@@ -17,8 +19,18 @@ const ShoppingScreen = ({ children }) => {
         end={{ x: 1, y: 0.5 }}
         style={StyleSheet.absoluteFill}
       />
-      {children}
-    </SafeAreaView>
+      <View
+        style={{
+          flex: 1,
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        }}
+      >
+        {children}
+      </View>
+    </View>
   );
 };
 

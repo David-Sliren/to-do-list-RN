@@ -28,6 +28,15 @@
     "web": {
       "favicon": "./assets/favicon.ico"
     },
-    "plugins": ["expo-router", "expo-font"]
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "9a21c141-1b64-4b4e-a843-5f57e2ccdce6"
+      }
+    }
   }
 }
