@@ -1,3 +1,10 @@
+/**
+ * Ordena una lista de elementos basada en un criterio específico.
+ * 
+ * @param {string} order - El tipo de ordenamiento ('az', 'za', 'date-ascend', 'date-defaul').
+ * @param {Array} list - La lista de objetos a ordenar.
+ * @returns {Array} La lista ordenada según el criterio.
+ */
 export function orderItems(order, list) {
   let sortList = [...list];
   switch (order) {

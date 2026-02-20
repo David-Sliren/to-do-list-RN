@@ -10,6 +10,17 @@ import { useShallow } from "zustand/react/shallow";
 // Utils
 import { orderItems } from "../utils/order";
 
+/**
+ * Hook personalizado para gestionar la lógica de la pantalla principal de compras.
+ * 
+ * Este hook encapsula el estado local y global necesario para interactuar con la lista
+ * de supermercados, incluyendo filtrado, ordenamiento y acciones del store.
+ * 
+ * @returns {Object} Un objeto que contiene:
+ *  - state: Estado reactivo (texto, edición, listas ordenadas, apertura de modales).
+ *  - methods: Acciones para manipular el estado (añadir, editar, borrar, actualizar).
+ *  - flashShopping: El ID único de la tienda de "compras rápidas".
+ */
 function useShopping_index() {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
