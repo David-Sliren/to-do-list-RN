@@ -1,87 +1,103 @@
-# RENPENTAIN - Gestión Inteligente de Compras 🛒
+# RENPENTAIN - Smart Shopping Management 🛒
 
-RENPENTAIN es una aplicación móvil moderna desarrollada con **React Native** y **Expo**, diseñada para simplificar y organizar tus listas de compras y supermercados. Con una interfaz intuitiva y animaciones fluidas, permite gestionar múltiples listas, realizar seguimientos de productos comprados y organizar tus visitas al mercado de manera eficiente.
+RENPENTAIN is a modern mobile app developed with **React Native** and **Expo**, designed to simplify and organize your shopping lists and supermarket visits. With an intuitive interface and fluid animations, it allows you to manage multiple lists, track purchased products, and efficiently organize your market trips.
 
-## 🚀 Características Principales
+## 🚀 Main Features
 
-- **Gestión de Supermercados**: Crea, edita y organiza tus establecimientos favoritos.
-- **Listas Detalladas**: Añade productos específicos a cada supermercado con estados de "pendiente" o "comprado".
-- **Compras Rápidas (Flash)**: Acceso directo para listas de compras inmediatas y recurrentes.
-- **Organización Inteligente**: Soporte para reordenamiento de elementos para priorizar tus compras.
-- **Persistencia de Datos**: Tus listas se guardan automáticamente en el dispositivo mediante `AsyncStorage`, funcionando totalmente offline.
-- **Interfaz Moderna**:
-  - Animaciones con **Moti** y **Lottie**.
-  - Componentes de hoja inferior (**Bottom Sheets**) para una experiencia nativa.
-  - Diseño responsivo y estilizado con **Tailwind CSS** (`twrnc`).
-  - Efectos visuales avanzados con **Expo Blur** y **Linear Gradient**.
+- **Supermarket Management**: Create, edit, and organize your favorite stores.
 
-## 🛠️ Stack Tecnológico
+- **Detailed Lists**: Add specific products to each supermarket with "pending" or "purchased" statuses.
+
+- **Flash Shopping**: Direct access to immediate and recurring shopping lists.
+
+- **Smart Organization**: Support for reordering items to prioritize your purchases.
+
+- **Data Persistence**: Your lists are automatically saved on your device using AsyncStorage, working completely offline.
+
+- **Modern Interface**:
+
+- Animations with **Moti** and **Lottie**.
+
+- Bottom Sheet components for a native experience.
+
+- Responsive and stylish design with **Tailwind CSS** (`twrnc`).
+
+- Advanced visual effects with **Expo Blur** and **Linear Gradient**.
+
+## 🛠️ Technology Stack
 
 - **Framework**: [React Native](https://reactnative.dev/) + [Expo](https://expo.dev/) (SDK 54)
-- **Navegación**: [Expo Router](https://docs.expo.dev/router/introduction/) (Basada en archivos)
-- **Estado Global**: [Zustand](https://github.com/pmndrs/zustand) con middleware de persistencia.
-- **Estilos**: [twrnc](https://github.com/vbudinger/twrnc) (Tailwind CSS para React Native)
-- **Animaciones**: [Moti](https://moti.fyi/), [Reanimated](https://docs.swmansion.com/react-native-reanimated/), [Lottie](https://github.com/lottie-react-native/lottie-react-native).
-- **Componentes UI**:
-  - `@gorhom/bottom-sheet` para modales interactivos.
-  - `expo-linear-gradient` para fondos dinámicos.
-  - `react-native-safe-area-context` para manejo de muescas (notches).
+- **Navigation**: [Expo Router](https://docs.expo.dev/router/introduction/) (File-based)
+- **Global State**: [Zusand](https://github.com/pmndrs/zustand) with persistence middleware.
 
-## 📂 Estructura del Proyecto
+- **Styles**: [twrnc](https://github.com/vbudinger/twrnc) (Tailwind CSS for React Native)
+- **Animations**: [Moti](https://moti.fyi/), [Reanimated](https://docs.swmansion.com/react-native-reanimated/), [Lottie](https://github.com/lottie-react-native/lottie-react-native).
+- **UI Components**: 
+- `@gorhom/bottom-sheet` for interactive modals. 
+- `expo-linear-gradient` for dynamic backgrounds. 
+- `react-native-safe-area-context` for notch handling.
+
+## 📂 Project Structure
 
 ```text
-├── app/                # Rutas y pantallas (Expo Router)
-│   ├── index.jsx       # Pantalla principal (Home)
-│   └── shopping/       # Módulo de compras y supermercados
-├── components/         # Componentes UI reutilizables y modulares
-│   ├── Modals_types/   # Implementaciones específicas de Bottom Sheets
-│   └── screens/        # Layouts base para pantallas
-├── store/              # Lógica de estado global (Zustand)
-│   ├── slices/         # Slices divididos por funcionalidad (tiendas/productos)
-│   └── shopping/       # Combinación y persistencia del store
-├── hooks/              # Hooks personalizados para lógica de negocio
-├── constants/          # Colores, configuraciones y temas
-├── utils/              # Funciones de ayuda (fechas, IDs, ordenamiento)
-└── assets/             # Imágenes, iconos y animaciones Lottie
+├── app/ # Routes and screens (Expo Router)
+│ ├── index.jsx # Main screen (Home)
+│ └── shopping/ # Shopping and supermarket module
+├── components/ # Reusable and modular UI components
+│ ├── Modals_types/ # Specific implementations of Bottom Sheets
+│ └── screens/ # Base layouts for screens
+├── store/ # Global state logic (Zustan)
+│ ├── slices/ # Slices divided by functionality (stores/products)
+│ └── shopping/ # Combination and persistence of store
+├── hooks/ # Custom hooks for business logic
+├── constants/ # Colors, settings, and themes
+├── utils/ # Helper functions (dates, IDs, sorting)
+└── assets/ # Images, icons, and Lottie animations
 ```
 
-## ⚙️ Instalación y Configuración
+## ⚙️ Installation and Configuration
 
-Sigue estos pasos para ejecutar el proyecto localmente:
+Follow these steps to run the project locally:
 
-1. **Clonar el repositorio**:
+1. **Clone the repository**:
 
-   ```bash
-   git clone <url-del-repositorio>
-   cd to-do-list-RN
-   ```
+``bash
+git clone <repository-url>
+cd to-do-list-RN
+```
 
-2. **Instalar dependencias**:
-   Este proyecto utiliza `yarn`:
+2. **Install dependencies**:
 
-   ```bash
-   yarn install
-   ```
+This project uses `yarn`:
 
-3. **Iniciar Expo**:
+``bash
+yarn install
+```
 
-   ```bash
-   npx expo start
-   ```
+3. **Start Expo**:
 
-4. **Ejecutar en un dispositivo/emulador**:
-   - Presiona `a` para Android.
-   - Presiona `i` para iOS.
-   - Escanea el código QR con la app **Expo Go**.
+``bash
+npx expo start
+```
 
-## 🧠 Arquitectura de Estado
+4. **Run in a Device/Emulator:
 
-La aplicación utiliza un patrón de **Slices** con Zustand para mantener la lógica separada pero combinada en un único store persistente.
+- Press `a` for Android.
 
-- **Stores Slice**: Maneja la creación y edición de supermercados.
-- **Products Slice**: Gestiona la lógica de productos, filtrado por ID de tienda y estados de compra.
-- **Persistencia**: Se utiliza `createJSONStorage` con `AsyncStorage` para garantizar que los datos sobrevivan al cierre de la aplicación.
+- Press `i` for iOS.
+
+- Scan the QR code with the Expo Go app.
+
+## 🧠 State Architecture
+
+The application uses a Slicer pattern with Zustand to keep the logic separate but combined in a single persistent store.
+
+- Stores Slice: Handles supermarket creation and editing.
+
+- Products Slice: Manages product logic, filtering by store ID and purchase status.
+
+- Persistence: `createJSONStorage` with `AsyncStorage` is used to ensure data persistence after the application closes.
 
 ---
 
-Desarrollado con ❤️ para una mejor organización diaria.
+Developed with ❤️ for better daily organization.
