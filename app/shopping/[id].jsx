@@ -29,18 +29,18 @@ function Products() {
   const { state, methods, handles } = useShopping_products(id);
 
   const {
+    text,
     isOpen,
     isEdit,
     idProduct,
+    nameStore,
     sortProductsbuys,
     sortPendingProducts,
-    text,
   } = state;
 
   const {
     setIsEdit,
     setIsOpen,
-    getStore,
     addProducts,
     checkProduct,
     editProducts,
@@ -50,9 +50,6 @@ function Products() {
   } = methods;
 
   const { handleChangeStatus, handleDeleteProduct } = handles;
-
-  // name de store
-  const name = getStore(id);
 
   function handlePress() {
     if (!isOpen) {
@@ -88,11 +85,11 @@ function Products() {
   return (
     <ShoppingScreen>
       <BannerTitle
-        title={name}
+        title={nameStore}
         subTitle={
-          name === "Compras rapidas"
-            ? `Tu lista de ${name}`
-            : `Tus productos en ${name}`
+          nameStore === "Compras rapidas"
+            ? `Tu lista de ${nameStore}`
+            : `Tus productos en ${nameStore}`
         }
         icon="bag-handle"
         iconAction={() => setIsOpenCart(!isOpenCart)}

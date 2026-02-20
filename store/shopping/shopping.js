@@ -21,3 +21,11 @@ export const useShoppingCombine = create(
     },
   ),
 );
+
+// Útil para depuración, pero evita ejecutarlo automáticamente en producción
+// const obtener = async () => {
+//   const data = await AsyncStorage.removeItem("shopping-store");
+//   console.log("storage: ", JSON.parse(data));
+// };
+
+// obtener();

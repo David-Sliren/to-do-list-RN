@@ -74,14 +74,6 @@ export const useShoppingProducts = (set, get) => ({
       set({ products: newProducts, inputProducts: { text: "", id: 0 } });
     },
 
-    getStore: (id) => {
-      const supermarket = get().supermarket;
-
-      const found = supermarket?.find((item) => item.id === id);
-
-      return found ? found.name : "";
-    },
-
     clearProducts: () => set({ products: [] }),
 
     updateSortProducts: (text) => set({ sortProducts: text }),

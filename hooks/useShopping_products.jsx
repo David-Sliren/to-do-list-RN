@@ -12,6 +12,8 @@ function useShopping_products(id) {
   const { text, idProduct } = useShoppingCombine(
     (state) => state.inputProducts,
   );
+  const supermarket = useShoppingCombine((state) => state.supermarket);
+
   const products = useShoppingCombine((state) => state.products);
   const sortProducts = useShoppingCombine((state) => state.sortProducts);
   const sortCart = useShoppingCombine((state) => state.sortCart);
@@ -22,13 +24,18 @@ function useShopping_products(id) {
   const {
     updateInput,
     addProducts,
+    // getStore,
     checkProduct,
     editProducts,
     deleteProducts,
-    getStore,
     updateProducts,
     updateSortProducts,
   } = useShoppingCombine((state) => state.products_actions);
+
+  const { name: nameStore } = useMemo(
+    () => supermarket?.find((item) => item.id === id),
+    [supermarket, id],
+  );
 
   const currentStoreProducts = useMemo(() => {
     return products
@@ -69,18 +76,19 @@ function useShopping_products(id) {
       currentStoreProducts,
       sortProductsbuys,
       sortPendingProducts,
+      nameStore,
     },
 
     methods: {
       setIsOpen,
       setIsEdit,
-      getStore,
       addProducts,
       checkProduct,
       editProducts,
       updateInput,
       updateSortProducts,
       updateSortCart,
+      // getStore,
     },
 
     handles: {
